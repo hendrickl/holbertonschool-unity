@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/0-floor.unity
     guid: 1ecabb6df05714b7bb9baddd68999a3b
+  - enabled: 1
+    path: Assets/Scenes/1-ball.unity
+    guid: 5797c4a335c144e8ba0d12c3e51eea8c
   m_configObjects: {}
