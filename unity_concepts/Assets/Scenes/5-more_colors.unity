@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 569507814038254480, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3be73002ee4ff4b3988a48055ec800db, type: 2}
     - target: {fileID: 2999316786308049090, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.4412203
@@ -173,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8724287017411563558, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
       propertyPath: m_Name
-      value: Ball (1)
+      value: Blue Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -188,6 +192,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 569507814038254480, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 21aabcb6d66af42dfa0be4ffd9ad6998, type: 2}
     - target: {fileID: 2999316786308049090, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.58796024
@@ -230,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8724287017411563558, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
       propertyPath: m_Name
-      value: Ball (4)
+      value: Black Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -245,6 +253,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 569507814038254480, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 46ddbfe6ccc2444139074d049b036545, type: 2}
     - target: {fileID: 2999316786308049090, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.8801641
@@ -287,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8724287017411563558, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
       propertyPath: m_Name
-      value: Ball (3)
+      value: White Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -593,6 +605,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 569507814038254480, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e13a6fedace8748818d855a1031a4d40, type: 2}
     - target: {fileID: 2999316786308049090, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.246096
@@ -635,7 +651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8724287017411563558, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
       propertyPath: m_Name
-      value: Ball (2)
+      value: Green Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -650,6 +666,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 569507814038254480, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 5bd8c5ffd335f435bb291ecaf5f71c7c, type: 2}
     - target: {fileID: 2999316786308049090, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -692,7 +712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8724287017411563558, guid: 266e3cc132cb7406fae8c79de5bf3ce2, type: 3}
       propertyPath: m_Name
-      value: Ball
+      value: Red Ball
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
