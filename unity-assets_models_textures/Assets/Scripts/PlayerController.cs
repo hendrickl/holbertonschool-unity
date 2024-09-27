@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float jumpForce = 10f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 10f;
+    [SerializeField] private Transform _groundContactPoint;
+    [SerializeField] private LayerMask _ground;
+
     private Rigidbody _rigidbody;
 
     private void Start()
@@ -15,7 +18,7 @@ public class PlayerController : MonoBehaviour
     {
         MovePlayer();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             Jump();
         }
@@ -34,5 +37,11 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, jumpForce, _rigidbody.velocity.z);
+    }
+
+    private bool IsGrounded()
+    {
+        Debug.Log($"PlayerController - IsGrounded : { Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground)}");
+        return Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
     }
 }
