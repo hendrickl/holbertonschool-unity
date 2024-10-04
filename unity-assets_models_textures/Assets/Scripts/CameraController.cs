@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform _PlayerPosition; 
+    [SerializeField] private Transform _playerPosition; 
     [SerializeField] private float _distance = 5.0f; // _distance from the player
     [SerializeField] private float _height = 2.0f; // _height above the player
     [SerializeField] private float _rotationSpeed = 5.0f; 
@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (_PlayerPosition == null)
+        if (_playerPosition == null)
         {
             Debug.Log("CameraController: No PlayerPosition assigned");
             return;
@@ -32,10 +32,10 @@ public class CameraController : MonoBehaviour
         }
 
         // Calculate the desired position
-        Vector3 l_desiredPosition = _PlayerPosition.position - (Quaternion.Euler(0, _currentRotation, 0) * Vector3.forward * _distance) + (Vector3.up * _height);
+        Vector3 l_desiredPosition = _playerPosition.position - (Quaternion.Euler(0, _currentRotation, 0) * Vector3.forward * _distance) + (Vector3.up * _height);
 
         // Set the camera's position and look at the player
         transform.position = l_desiredPosition;
-        transform.LookAt(_PlayerPosition.position + (Vector3.up * _height / 2)); // Look at the upper body of the player
+        transform.LookAt(_playerPosition.position + (Vector3.up * _height / 2)); // Look at the upper body of the player
     }
 }
