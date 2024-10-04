@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform _groundContactPoint;
     [SerializeField] private float _fallThreshold = -20f;
     [SerializeField] private Vector3 _startPosition; 
+    [SerializeField] private Vector3 _resetPosition; 
     [SerializeField] private LayerMask _ground;
 
     private Rigidbody _rigidbody;
@@ -60,6 +61,6 @@ public class PlayerController : MonoBehaviour
 
     private void ResetPlayerPosition()
     {
-        transform.position = _startPosition;
+        transform.position = _resetPosition;
     }
 }

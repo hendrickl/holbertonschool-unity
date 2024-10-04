@@ -894,6 +894,9 @@ MonoBehaviour:
   _moveSpeed: 5
   _jumpForce: 8
   _groundContactPoint: {fileID: 261686397}
+  _fallThreshold: -20
+  _startPosition: {x: 0, y: 0, z: 0}
+  _resetPosition: {x: 0, y: 40, z: 0}
   _ground:
     serializedVersion: 2
     m_Bits: 64
@@ -1497,7 +1500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87b6d48dcf75c494b939538ad851a3cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _PlayerPosition: {fileID: 926642824}
+  _playerPosition: {fileID: 926642824}
   _distance: 5
   _height: 2
   _rotationSpeed: 5
