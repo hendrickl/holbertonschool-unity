@@ -6,24 +6,26 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce = 10f;
     [SerializeField] private Transform _groundContactPoint;
     [SerializeField] private float _fallThreshold = -20f;
-    [SerializeField] private Transform _startPosition; 
+    [SerializeField] private Vector3 _startPosition; 
     [SerializeField] private LayerMask _ground;
 
     private Rigidbody _rigidbody;
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>(); // Get the Rigidbody component attached to the Player 
+        _rigidbody = GetComponent<Rigidbody>(); 
+        _startPosition = transform.position;
     }
 
     private void Update()
     {
-        MovePlayer();
-
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             Jump();
         }
+
+        MovePlayer();
+        CheckFall();
     }
 
     // Move the player based on WASD and arrows input
@@ -46,5 +48,18 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log($"PlayerController - IsGrounded : { Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground)}");
         return Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
+    }
+
+    private void CheckFall()
+    {
+        if (transform.position.y < _fallThreshold)
+        {
+            ResetPlayerPosition();
+        }
+    }
+
+    private void ResetPlayerPosition()
+    {
+        transform.position = _startPosition;
     }
 }
