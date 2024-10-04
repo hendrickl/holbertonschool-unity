@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] private Transform _PlayerPosition; // The player's transform
+    [SerializeField] private Transform _PlayerPosition; 
     [SerializeField] private float _distance = 5.0f; // _distance from the player
     [SerializeField] private float _height = 2.0f; // _height above the player
-    [SerializeField] private float _rotationSpeed = 5.0f; // Speed of camera rotation
+    [SerializeField] private float _rotationSpeed = 5.0f; 
     [SerializeField] private bool _requireRightClick = true; // If true, right-click is required to rotate
 
     private float _currentRotation = 0.0f;
