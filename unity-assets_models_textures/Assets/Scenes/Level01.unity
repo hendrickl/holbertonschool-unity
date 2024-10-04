@@ -813,6 +813,7 @@ GameObject:
   - component: {fileID: 666733504}
   - component: {fileID: 666733503}
   - component: {fileID: 666733502}
+  - component: {fileID: 666733506}
   m_Layer: 0
   m_Name: WinFlag
   m_TagString: Untagged
@@ -899,6 +900,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &666733506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666733501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4da5279687170fc42b300679ae16c838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timer: {fileID: 926642828}
+  _timerText: {fileID: 601414690}
+  _increasedFontSize: 60
+  _winColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &768129358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,7 +1042,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &926642814 stripped
 GameObject:
@@ -1666,7 +1683,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2125132644
 GameObject:
@@ -1751,7 +1768,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 9, y: 0, z: 0}
 --- !u!114 &2125132648
 MonoBehaviour:
