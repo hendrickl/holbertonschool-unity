@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _jumpForce, _rigidbody.velocity.z);
+        Debug.Log($"Jump is called");
     }
 
     // Check if the player is grounded
