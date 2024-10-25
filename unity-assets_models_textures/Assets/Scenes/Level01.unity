@@ -287,6 +287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock_smallE_Platform_Level3_R
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 94287d99ef59da94bb919051dbcc6cdd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94287d99ef59da94bb919051dbcc6cdd, type: 3}
 --- !u!4 &177813344 stripped
@@ -548,6 +552,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 074b483d80bf45e499dd1f89cf7ae160, type: 3}
       propertyPath: m_Name
       value: rock_largeB_End_Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 074b483d80bf45e499dd1f89cf7ae160, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 074b483d80bf45e499dd1f89cf7ae160, type: 3}
@@ -1256,6 +1264,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock_largeC_Platform_Level1_R
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 51b15b439fb511d498648084a27fdafe, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b15b439fb511d498648084a27fdafe, type: 3}
 --- !u!4 &582745827 stripped
@@ -1604,6 +1616,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock_smallE_Platform_Level3_L
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 94287d99ef59da94bb919051dbcc6cdd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94287d99ef59da94bb919051dbcc6cdd, type: 3}
 --- !u!4 &641599760 stripped
@@ -1860,7 +1876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 799245728}
   m_Layer: 0
-  m_Name: ========== PLAYABLE GO ==========
+  m_Name: ========== PLAYABLE GO ================================
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1991,7 +2007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
-  _jumpForce: 8
+  _jumpForce: 9
   _groundContactPoint: {fileID: 261686397}
   _fallThreshold: -20
   _startPosition: {x: 0, y: 0, z: 0}
@@ -2117,6 +2133,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c9767683de73dd948857867783afabce, type: 3}
       propertyPath: m_Name
       value: rock_tallH_Platform_Level4_R
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c9767683de73dd948857867783afabce, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9767683de73dd948857867783afabce, type: 3}
@@ -2559,6 +2579,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 190487386}
     m_Modifications:
+    - target: {fileID: -8697651321552657676, guid: 981d520092759244fbff46ef9a54405c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 981d520092759244fbff46ef9a54405c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2618,6 +2642,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 981d520092759244fbff46ef9a54405c, type: 3}
       propertyPath: m_Name
       value: rock_largeA_Start_Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 981d520092759244fbff46ef9a54405c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 981d520092759244fbff46ef9a54405c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 981d520092759244fbff46ef9a54405c, type: 3}
@@ -2916,6 +2948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock_largeA_Platform_Level2_L
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 981d520092759244fbff46ef9a54405c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 981d520092759244fbff46ef9a54405c, type: 3}
 --- !u!4 &1378577922 stripped
@@ -2998,6 +3034,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 51b15b439fb511d498648084a27fdafe, type: 3}
       propertyPath: m_Name
       value: rock_largeC_Platform_Level1_L
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 51b15b439fb511d498648084a27fdafe, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51b15b439fb511d498648084a27fdafe, type: 3}
@@ -3155,6 +3195,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock_tallAPlatform_Level4_L
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7a60683895807e741a41057770445ffc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a60683895807e741a41057770445ffc, type: 3}
 --- !u!4 &1433257128 stripped
@@ -3241,7 +3285,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1506374272}
   m_Layer: 0
-  m_Name: ========== FURNITURES ==========
+  m_Name: ========== FURNITURES ================================
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3393,6 +3437,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rock_largeA_Platform_Level2_R
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 981d520092759244fbff46ef9a54405c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 981d520092759244fbff46ef9a54405c, type: 3}
 --- !u!4 &1614044913 stripped
@@ -3423,7 +3471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1614379971}
   m_Layer: 0
-  m_Name: ========== PLATFORMS ==========
+  m_Name: ========== PLATFORMS ================================
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3649,7 +3697,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1832999519}
   m_Layer: 0
-  m_Name: ========== UI ==========
+  m_Name: ========== UI ================================
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3680,7 +3728,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1842016731}
   m_Layer: 0
-  m_Name: ========== LOGIC GO ==========
+  m_Name: ========== LOGIC GO ================================
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
