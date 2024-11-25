@@ -4144,9 +4144,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 388559380162647685, guid: 48cc60f5971742147861d395d34a98b5, type: 3}
+      propertyPath: m_text
+      value: Restart
+      objectReference: {fileID: 0}
     - target: {fileID: 388559380210274400, guid: 48cc60f5971742147861d395d34a98b5, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 388559380210274400, guid: 48cc60f5971742147861d395d34a98b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 388559380210274404, guid: 48cc60f5971742147861d395d34a98b5, type: 3}
       propertyPath: m_Pivot.x
