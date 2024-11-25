@@ -2,23 +2,30 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    // [SerializeField] private Canvas _pauseCanvas;
     [SerializeField] private GameObject _pauseCanvas;
+    [SerializeField] private TimerTrigger _timer;
 
-    private bool _isPaused = false;
+    private bool _isPaused = false; // Track if the game is currently paused
 
     private void Update() 
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PauseGame();
+            Pause();
         }    
     }
 
-    private void PauseGame()
+    public void Pause()
     {
-        Debug.Log($"PauseGame called");
-        _isPaused = !_isPaused;
+        _isPaused = !_isPaused; // Toggle pause state
         _pauseCanvas.SetActive(_isPaused);
+
+        // Set time scale (0 = frozen, 1 = normal)
+        Time.timeScale = _isPaused ? 0f : 1f;
+
+        if (_timer != null)
+        {
+            _timer.enabled = !_isPaused; 
+        }
     }
 }

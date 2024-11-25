@@ -2067,6 +2067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseCanvas: {fileID: 188052099}
+  _timer: {fileID: 511529231}
 --- !u!1 &997086295 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 51b15b439fb511d498648084a27fdafe, type: 3}
