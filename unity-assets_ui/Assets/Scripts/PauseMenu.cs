@@ -1,31 +1,66 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseCanvas;
     [SerializeField] private TimerTrigger _timer;
+    [SerializeField] private Button _resumeButton;
 
-    private bool _isPaused = false; // Track if the game is currently paused
+    private bool _isPaused = false;
 
-    private void Update() 
+    private void Awake()
+    {
+        Time.timeScale = 1f; // Ensure time scale is reset at the start of the scene
+    }
+
+    private void Start()
+    {
+        _pauseCanvas.SetActive(false);
+        _resumeButton.onClick.AddListener(Resume);
+    }
+
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Pause();
-        }    
+            if (_isPaused)
+            {
+                Resume();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
     }
 
-    public void Pause()
+    private void OnDestroy()
     {
-        _isPaused = !_isPaused; // Toggle pause state
-        _pauseCanvas.SetActive(_isPaused);
+        _resumeButton.onClick.RemoveListener(Resume);
+    }
 
-        // Set time scale (0 = frozen, 1 = normal)
-        Time.timeScale = _isPaused ? 0f : 1f;
+    public void PauseGame()
+    {
+        _isPaused = true;
+        _pauseCanvas.SetActive(true);
+        Time.timeScale = 0f;
 
         if (_timer != null)
         {
-            _timer.enabled = !_isPaused; 
+            _timer.enabled = false;
+        }
+    }
+
+    public void Resume()
+    {
+        _isPaused = false;
+        _pauseCanvas.SetActive(false);
+        Time.timeScale = 1f;
+
+        if (_timer != null)
+        {
+            _timer.enabled = true;
         }
     }
 }
