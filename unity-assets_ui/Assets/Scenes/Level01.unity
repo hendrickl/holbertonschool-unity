@@ -2016,7 +2016,7 @@ MonoBehaviour:
   _groundContactPoint: {fileID: 261686397}
   _fallThreshold: -20
   _startPosition: {x: 0, y: 0, z: 0}
-  _resetPosition: {x: 0, y: 40, z: 0}
+  _resetPosition: {x: 0, y: 40, z: 3.5}
   _ground:
     serializedVersion: 2
     m_Bits: 64
