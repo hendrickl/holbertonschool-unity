@@ -26,11 +26,11 @@ public class Timer : MonoBehaviour
 
     private void UpdateTimer()
     {
-        float minutes = Mathf.FloorToInt(_elapsedTime / 60); // Mathf.FloorToInt() is a Unity function that rounds a floating point number down to the nearest integer.
-        float seconds = Mathf.FloorToInt(_elapsedTime % 60);
-        float milliseconds = (_elapsedTime % 1) * 100;
+        float l_minutes = Mathf.FloorToInt(_elapsedTime / 60); // Mathf.FloorToInt() is a Unity function that rounds a floating point number down to the nearest integer.
+        float l_seconds = Mathf.FloorToInt(_elapsedTime % 60);
+        float l_milliseconds = (_elapsedTime % 1) * 100;
 
-        string timeFormat = string.Format("{0:00}:{1:00}.{2:00}", minutes, seconds, milliseconds);
-        timerText.text = timeFormat;
+        string l_timeFormat = string.Format("{0:00}:{1:00}.{2:00}", l_minutes, l_seconds, l_milliseconds);
+        timerText.text = l_timeFormat;
     }
 }
