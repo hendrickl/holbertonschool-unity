@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseCanvas;
     [SerializeField] private TimerTrigger _timer;
     [SerializeField] private Button _resumeButton;
+    [SerializeField] private Button _restartButton;
 
     private bool _isPaused = false;
 
@@ -17,7 +19,12 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         _pauseCanvas.SetActive(false);
-        _resumeButton.onClick.AddListener(Resume);
+
+        if (_resumeButton != null)
+            _resumeButton.onClick.AddListener(Resume);
+
+        if (_restartButton != null)
+            _restartButton.onClick.AddListener(Restart);
     }
 
     private void Update()
@@ -37,7 +44,11 @@ public class PauseMenu : MonoBehaviour
 
     private void OnDestroy()
     {
-        _resumeButton.onClick.RemoveListener(Resume);
+        if (_resumeButton != null)
+            _resumeButton.onClick.RemoveListener(Resume);
+        
+        if (_restartButton != null)
+            _restartButton.onClick.RemoveListener(Restart);
     }
 
     public void Pause()
@@ -62,5 +73,10 @@ public class PauseMenu : MonoBehaviour
         {
             _timer.enabled = true;
         }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
