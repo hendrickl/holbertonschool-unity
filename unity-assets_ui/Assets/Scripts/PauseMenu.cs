@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private Button _resumeButton;
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _mainMenuButton;
+    [SerializeField] private Button _optionsButton;
 
     private bool _isPaused = false;
 
@@ -29,6 +30,9 @@ public class PauseMenu : MonoBehaviour
 
         if (_mainMenuButton != null)
             _mainMenuButton.onClick.AddListener(MainMenu);
+
+        if (_optionsButton != null)
+            _optionsButton.onClick.AddListener(Options);
     }
 
     private void Update()
@@ -56,6 +60,9 @@ public class PauseMenu : MonoBehaviour
 
         if (_mainMenuButton != null)
             _mainMenuButton.onClick.RemoveListener(MainMenu);
+
+        if (_optionsButton != null)
+            _optionsButton.onClick.RemoveListener(Options);
     }
 
     public void Pause()
@@ -90,5 +97,10 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void Options()
+    {
+        SceneManager.LoadScene(1);
     }
 }
