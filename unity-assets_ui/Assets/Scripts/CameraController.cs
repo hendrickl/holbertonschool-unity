@@ -11,6 +11,8 @@ public class CameraController : MonoBehaviour
 
     private float _currentRotationX = 0f;
     private float _currentRotationY = 0f;
+    private const float MIN_VERTICAL_ANGLE = -40f; // Prevent camera from going too low
+    private const float MAX_VERTICAL_ANGLE = 80f; // Prevent camera from going too high
 
     private void LateUpdate()
     {
@@ -35,7 +37,8 @@ public class CameraController : MonoBehaviour
             Debug.Log($"currentRotationX: {_currentRotationX}");
 
             float l_verticalRotation = _isInverted ? -l_mouseY : l_mouseY;
-            _currentRotationY += l_verticalRotation;
+            _currentRotationY = Mathf.Clamp(_currentRotationY + l_verticalRotation, MIN_VERTICAL_ANGLE, MAX_VERTICAL_ANGLE);
+            // _currentRotationY += l_verticalRotation;
             Debug.Log($"currentRotationY: {_currentRotationY}");
         }
 
