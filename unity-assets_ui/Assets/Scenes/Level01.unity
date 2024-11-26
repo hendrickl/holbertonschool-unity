@@ -4229,7 +4229,8 @@ MonoBehaviour:
   _distance: 5
   _height: 2
   _rotationSpeed: 5
-  _requireRightClick: 1
+  _requireRightClick: 0
+  _isInverted: 0
 --- !u!1001 &388559380295000803
 PrefabInstance:
   m_ObjectHideFlags: 0
