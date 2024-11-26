@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private TimerTrigger _timer;
     [SerializeField] private Button _resumeButton;
     [SerializeField] private Button _restartButton;
+    [SerializeField] private Button _mainMenuButton;
 
     private bool _isPaused = false;
 
@@ -25,6 +26,9 @@ public class PauseMenu : MonoBehaviour
 
         if (_restartButton != null)
             _restartButton.onClick.AddListener(Restart);
+
+        if (_mainMenuButton != null)
+            _mainMenuButton.onClick.AddListener(MainMenu);
     }
 
     private void Update()
@@ -49,6 +53,9 @@ public class PauseMenu : MonoBehaviour
         
         if (_restartButton != null)
             _restartButton.onClick.RemoveListener(Restart);
+
+        if (_mainMenuButton != null)
+            _mainMenuButton.onClick.RemoveListener(MainMenu);
     }
 
     public void Pause()
@@ -78,5 +85,10 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

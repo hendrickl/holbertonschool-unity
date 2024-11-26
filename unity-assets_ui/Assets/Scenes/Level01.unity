@@ -2081,6 +2081,7 @@ MonoBehaviour:
   _timer: {fileID: 511529231}
   _resumeButton: {fileID: 1533949849}
   _restartButton: {fileID: 229622161}
+  _mainMenuButton: {fileID: 2061288221}
 --- !u!1 &997086295 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 51b15b439fb511d498648084a27fdafe, type: 3}
@@ -4035,6 +4036,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &2061288221 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 388559380503971925, guid: 48cc60f5971742147861d395d34a98b5, type: 3}
+  m_PrefabInstance: {fileID: 388559380295000803}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2109098640
 PrefabInstance:
   m_ObjectHideFlags: 0
