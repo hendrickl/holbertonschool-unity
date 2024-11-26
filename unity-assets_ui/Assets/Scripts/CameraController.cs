@@ -7,7 +7,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _height = 2f; // _height above the player
     [SerializeField] private float _rotationSpeed = 5f; 
     [SerializeField] private bool _requireRightClick = true; // If true, right-click is required to rotate
-    [SerializeField] private bool _isInverted = false; // Controls Y-axis inversion
+    
+    public bool isInverted = false; // Controls Y-axis inversion
 
     private float _currentRotationX = 0f;
     private float _currentRotationY = 0f;
@@ -36,7 +37,7 @@ public class CameraController : MonoBehaviour
             _currentRotationX += l_mouseX;
             Debug.Log($"currentRotationX: {_currentRotationX}");
 
-            float l_verticalRotation = _isInverted ? -l_mouseY : l_mouseY;
+            float l_verticalRotation = isInverted ? -l_mouseY : l_mouseY;
             _currentRotationY = Mathf.Clamp(_currentRotationY + l_verticalRotation, MIN_VERTICAL_ANGLE, MAX_VERTICAL_ANGLE);
             // _currentRotationY += l_verticalRotation;
             Debug.Log($"currentRotationY: {_currentRotationY}");
