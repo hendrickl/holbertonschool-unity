@@ -30,7 +30,7 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
-                PauseGame();
+                Pause();
             }
         }
     }
@@ -40,7 +40,7 @@ public class PauseMenu : MonoBehaviour
         _resumeButton.onClick.RemoveListener(Resume);
     }
 
-    public void PauseGame()
+    public void Pause()
     {
         _isPaused = true;
         _pauseCanvas.SetActive(true);
