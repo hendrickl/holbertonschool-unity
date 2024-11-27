@@ -102,6 +102,9 @@ public class PauseMenu : MonoBehaviour
 
     public void Options()
     {
+        PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
+        Debug.Log($"Previous scene index: {SceneManager.GetActiveScene().buildIndex}");
+        
         SceneManager.LoadScene(1);
     }
 }

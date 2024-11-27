@@ -9,12 +9,18 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 5f; 
     [SerializeField] private bool _requireRightClick = true; // If true, right-click is required to rotate
     
-    public bool isInverted = false; // Controls Y-axis inversion
+    public bool isInverted; // Controls Y-axis inversion
 
     private float _currentRotationX = 0f;
     private float _currentRotationY = 0f;
     private const float MIN_VERTICAL_ANGLE = -40f; // Prevent camera from going too low
     private const float MAX_VERTICAL_ANGLE = 80f; // Prevent camera from going too high
+
+    private void Start()
+    {
+        isInverted = PlayerPrefs.GetInt("Y-axisIsInverted", 0) == 1;
+        Debug.Log($"Y-axis is inverted value: {PlayerPrefs.GetInt("Y-axisIsInverted", 0)}");
+    }
 
     private void LateUpdate()
     {
@@ -25,6 +31,7 @@ public class CameraController : MonoBehaviour
         }
 
         RotateCameraAroundPlayer();
+        Debug.Log($"Y-axis is inverted value: {PlayerPrefs.GetInt("Y-axisIsInverted", 0)}");
     }
 
     // Rotate the camera based on mouse input

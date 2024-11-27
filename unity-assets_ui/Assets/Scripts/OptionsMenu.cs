@@ -1,18 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Button _applyButton;
+    [SerializeField] private Toggle _invertYButton;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        bool isYaxisInverted = PlayerPrefs.GetInt("Y-axisIsInverted", 0) == 1;
+        Debug.Log($"Y-axis is inverted: {isYaxisInverted}");
+
+        if (_invertYButton != null)
+            _invertYButton.isOn = isYaxisInverted;
+
+        Debug.Log($"Invert button value: {isYaxisInverted}");
     }
 }

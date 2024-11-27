@@ -31,6 +31,9 @@ public class MainMenu : MonoBehaviour
 
     public void LevelSelect(int level)
     {
+        PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
+        Debug.Log($"Previous scene index: {SceneManager.GetActiveScene().buildIndex}");
+        
         SceneManager.LoadScene(level);
     }
 
