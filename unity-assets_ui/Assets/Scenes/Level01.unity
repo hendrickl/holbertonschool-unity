@@ -475,37 +475,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08074182, y: 0.86189556, z: 0.07211028}
   m_Center: {x: 0.010789314, y: -0.069052294, z: 0.010789527}
---- !u!1 &261686396
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 261686397}
-  m_Layer: 0
-  m_Name: Ground_Contact_Point
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &261686397
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 261686396}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 926642824}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &286048597
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -967,7 +936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c12977dc7d76eff4eb2923486ea95c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timer: {fileID: 926642828}
+  _timer: {fileID: 0}
 --- !u!65 &511529232
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1781,7 +1750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da5279687170fc42b300679ae16c838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timer: {fileID: 926642828}
+  _timer: {fileID: 0}
   _timerText: {fileID: 601414690}
   _increasedFontSize: 60
   _winColor: {r: 0, g: 1, b: 0, a: 1}
@@ -2005,84 +1974,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 981d520092759244fbff46ef9a54405c, type: 3}
   m_PrefabInstance: {fileID: 1301570020}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &926642814 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3047078706608272710, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
-  m_PrefabInstance: {fileID: 4346783045305573622}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &926642819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 926642814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31bdd5c5136967d4da7c91eb9cb1336a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _jumpForce: 9
-  _groundContactPoint: {fileID: 261686397}
-  _fallThreshold: -20
-  _startPosition: {x: 0, y: 0, z: 0}
-  _resetPosition: {x: 0, y: 40, z: 3.5}
-  _ground:
-    serializedVersion: 2
-    m_Bits: 64
---- !u!54 &926642820
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 926642814}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!4 &926642824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5267705039484550072, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
   m_PrefabInstance: {fileID: 4346783045305573622}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &926642828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 926642814}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0425d8b054b21884ea656857defecb9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timerText: {fileID: 601414690}
---- !u!114 &926642832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 926642814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b56f346c20a13ee40b460a37deec052a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pauseCanvas: {fileID: 188052099}
-  _timer: {fileID: 511529231}
-  _resumeButton: {fileID: 1533949849}
-  _restartButton: {fileID: 229622161}
-  _mainMenuButton: {fileID: 2061288221}
-  _optionsButton: {fileID: 1990254403}
 --- !u!1 &997086295 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 51b15b439fb511d498648084a27fdafe, type: 3}
@@ -2635,7 +2531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 981d520092759244fbff46ef9a54405c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 981d520092759244fbff46ef9a54405c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4238,10 +4134,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 388559380162647685, guid: 48cc60f5971742147861d395d34a98b5, type: 3}
-      propertyPath: m_text
-      value: Restart
-      objectReference: {fileID: 0}
     - target: {fileID: 388559380210274400, guid: 48cc60f5971742147861d395d34a98b5, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
@@ -4444,16 +4336,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 926642832, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
+      propertyPath: _timer
+      value: 
+      objectReference: {fileID: 511529231}
+    - target: {fileID: 926642832, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
+      propertyPath: _pauseCanvas
+      value: 
+      objectReference: {fileID: 188052099}
+    - target: {fileID: 926642832, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
+      propertyPath: _resumeButton
+      value: 
+      objectReference: {fileID: 1533949849}
+    - target: {fileID: 926642832, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
+      propertyPath: _optionsButton
+      value: 
+      objectReference: {fileID: 1990254403}
+    - target: {fileID: 926642832, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
+      propertyPath: _restartButton
+      value: 
+      objectReference: {fileID: 229622161}
+    - target: {fileID: 926642832, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
+      propertyPath: _mainMenuButton
+      value: 
+      objectReference: {fileID: 2061288221}
     - target: {fileID: 3047078706608272710, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047078706608272710, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3047078706608272710, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5267705039484550072, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}

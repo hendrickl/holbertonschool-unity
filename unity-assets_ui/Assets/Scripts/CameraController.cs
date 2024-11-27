@@ -31,7 +31,6 @@ public class CameraController : MonoBehaviour
         }
 
         RotateCameraAroundPlayer();
-        Debug.Log($"Y-axis is inverted value: {PlayerPrefs.GetInt("Y-axisIsInverted", 0)}");
     }
 
     // Rotate the camera based on mouse input

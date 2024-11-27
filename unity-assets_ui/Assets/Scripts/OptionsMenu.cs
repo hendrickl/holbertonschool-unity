@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class OptionsMenu : MonoBehaviour
 {
     [SerializeField] private Button _applyButton;
+    [SerializeField] private Button _backButton;
     [SerializeField] private Toggle _invertYButton;
 
     private int _previousSceneIndex;
@@ -23,6 +24,7 @@ public class OptionsMenu : MonoBehaviour
         Debug.Log($"Invert button value: {isYaxisInverted}");
 
         _applyButton.onClick.AddListener(Apply);
+        _backButton.onClick.AddListener(Back);
     }
 
     public void Apply()
@@ -36,8 +38,14 @@ public class OptionsMenu : MonoBehaviour
         SceneManager.LoadScene(_previousSceneIndex);
     }
 
+    public void Back()
+    {
+        SceneManager.LoadScene(_previousSceneIndex);
+    }
+
     private void OnDestroy() 
     {
         _applyButton.onClick.RemoveListener(Apply);
+        _backButton.onClick.RemoveListener(Back);
     }
 }
