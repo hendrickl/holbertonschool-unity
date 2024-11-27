@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// This script manages the navigation menu
+// This script manages navigation between scenes
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private Button _level01Button;

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// This script manages the behaviour of the camera 
 public class CameraController : MonoBehaviour
 {
     [SerializeField] private Transform _playerPosition; 

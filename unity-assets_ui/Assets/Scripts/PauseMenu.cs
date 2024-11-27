@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+// This script manages the functionality of the pause panel
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseCanvas;

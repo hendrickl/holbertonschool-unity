@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// This script manages the behaviour of the player
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 5f;
