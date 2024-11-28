@@ -19,10 +19,10 @@ public class WinTrigger : MonoBehaviour
     {
         if (p_other.CompareTag("Player"))
         {
+            DisplayWinCanvas();
             Stop_timer();
             IncreaseTextSize();
             ChangeTextColor();
-            DisplayWinCanvas();
             _timerText.enabled = false;
         }
     }
@@ -30,29 +30,33 @@ public class WinTrigger : MonoBehaviour
     private void Stop_timer()
     {
         if (_timer != null)
-        {
             _timer.enabled = false;
-        }
     }
 
     private void IncreaseTextSize()
     {
         if (_timerText != null)
-        {
             _timerText.fontSize = _increasedFontSize;
-        }
     }
 
     private void ChangeTextColor()
     {
         if (_timerText != null)
-        {
             _timerText.color = _winColor;
-        }
     }
 
     private void DisplayWinCanvas()
     {
-        _winCanvas.gameObject.SetActive(true);
+        if (_winCanvas != null)
+        {
+            _winCanvas.gameObject.SetActive(true);
+            DisplayFinalTime();
+        }
+    }
+
+    private void DisplayFinalTime()
+    {
+        if (_timer != null)
+            _timer.Win();
     }
 }

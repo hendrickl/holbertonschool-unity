@@ -3,7 +3,8 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    public TMP_Text timerText;
+    [SerializeField] private TMP_Text _timerText;
+    [SerializeField] private TMP_Text _finalTimeText;
     private float _elapsedTime = 0f;
     private bool _isRunning = false;
 
@@ -19,9 +20,7 @@ public class Timer : MonoBehaviour
     public void StartTimer()
     {
         if (!_isRunning)
-        {
             _isRunning = true;
-        }
     }
 
     private void UpdateTimer()
@@ -31,6 +30,14 @@ public class Timer : MonoBehaviour
         float l_milliseconds = (_elapsedTime % 1) * 100;
 
         string l_timeFormat = string.Format("{0:00}:{1:00}.{2:00}", l_minutes, l_seconds, l_milliseconds);
-        timerText.text = l_timeFormat;
+        _timerText.text = l_timeFormat;
+    }
+
+    public void Win()
+    {
+        Debug.Log($"Timer - called");
+        _isRunning = false;
+        _finalTimeText.text = _timerText.text;
+        Debug.Log($"Timer - Final time: {_finalTimeText.text}");
     }
 }

@@ -12,9 +12,9 @@ public class TimerTrigger : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider p_other)
     {
-        if (other.CompareTag("Player"))
+        if (p_other.CompareTag("Player"))
         {
             StartTimer();
         }
