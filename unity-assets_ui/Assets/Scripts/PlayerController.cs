@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>(); 
-        _startPosition = transform.position;
+        transform.position = _startPosition;
     }
 
     private void Update()
