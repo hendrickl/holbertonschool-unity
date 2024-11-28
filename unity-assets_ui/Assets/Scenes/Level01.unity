@@ -475,6 +475,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.08074182, y: 0.86189556, z: 0.07211028}
   m_Center: {x: 0.010789314, y: -0.069052294, z: 0.010789527}
+--- !u!114 &238501661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7602956257897724441, guid: 212cc11d665d272489bef876411a1207, type: 3}
+  m_PrefabInstance: {fileID: 412913629}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &262886461 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3047078706608272710, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
@@ -756,7 +767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7741829899890395572, guid: 212cc11d665d272489bef876411a1207, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 212cc11d665d272489bef876411a1207, type: 3}
@@ -1770,6 +1781,7 @@ GameObject:
   - component: {fileID: 666733503}
   - component: {fileID: 666733502}
   - component: {fileID: 666733506}
+  - component: {fileID: 666733507}
   m_Layer: 0
   m_Name: WinFlag
   m_TagString: Untagged
@@ -1874,6 +1886,19 @@ MonoBehaviour:
   _timerText: {fileID: 601414690}
   _increasedFontSize: 60
   _winColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &666733507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666733501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4784110a7a6a2ca47b3735cdb0253274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuButton: {fileID: 238501661}
 --- !u!114 &749187969 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6765060463058600791, guid: 212cc11d665d272489bef876411a1207, type: 3}
@@ -3814,7 +3839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1842016731}
   m_Layer: 0
-  m_Name: ========== LOGIC GO ================================
+  m_Name: ========== LOGIC EMPTY  GO ================================
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
