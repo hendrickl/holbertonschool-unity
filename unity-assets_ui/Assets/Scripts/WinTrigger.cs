@@ -1,20 +1,23 @@
 using UnityEngine;
 using TMPro;
 
+// This script manages win condition in the game
 public class WinTrigger : MonoBehaviour
 {
     [SerializeField] private Timer _timer;
+    [SerializeField] private Canvas _winCanvas;
     [SerializeField] private TMP_Text _timerText;
     [SerializeField] private float _increasedFontSize = 60f;
     [SerializeField] private Color _winColor = Color.green;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider p_other)
     {
-        if (other.CompareTag("Player"))
+        if (p_other.CompareTag("Player"))
         {
             Stop_timer();
             IncreaseTextSize();
             ChangeTextColor();
+            _winCanvas.gameObject.SetActive(true);
         }
     }
 

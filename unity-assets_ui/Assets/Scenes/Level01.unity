@@ -839,6 +839,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06779431, y: 1, z: 0.05916317}
   m_Center: {x: 0.0043159653, y: 0, z: -0.004315972}
+--- !u!223 &431712368 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 7741829899890395569, guid: 212cc11d665d272489bef876411a1207, type: 3}
+  m_PrefabInstance: {fileID: 412913629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &434320598 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 94287d99ef59da94bb919051dbcc6cdd, type: 3}
@@ -1775,9 +1780,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.07502338
-  m_Height: 6.4949746
+  m_Height: 5.48522
   m_Direction: 1
-  m_Center: {x: 0.02967088, y: 2.346863, z: -0.00000062584877}
+  m_Center: {x: 0.02967088, y: 1.8419857, z: -0.00000062584877}
 --- !u!23 &666733503
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1856,8 +1861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da5279687170fc42b300679ae16c838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timer: {fileID: 0}
-  _winCanvas: {fileID: 0}
+  _timer: {fileID: 926642825}
+  _winCanvas: {fileID: 431712368}
   _timerText: {fileID: 601414690}
   _increasedFontSize: 60
   _winColor: {r: 0, g: 1, b: 0, a: 1}
