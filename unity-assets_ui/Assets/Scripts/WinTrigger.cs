@@ -10,6 +10,11 @@ public class WinTrigger : MonoBehaviour
     [SerializeField] private float _increasedFontSize = 60f;
     [SerializeField] private Color _winColor = Color.green;
 
+    private void Start()
+    {
+        _winCanvas.gameObject.SetActive(false)
+;    }
+
     private void OnTriggerEnter(Collider p_other)
     {
         if (p_other.CompareTag("Player"))
@@ -17,7 +22,8 @@ public class WinTrigger : MonoBehaviour
             Stop_timer();
             IncreaseTextSize();
             ChangeTextColor();
-            _winCanvas.gameObject.SetActive(true);
+            DisplayWinCanvas();
+            _timerText.enabled = false;
         }
     }
 
@@ -43,5 +49,10 @@ public class WinTrigger : MonoBehaviour
         {
             _timerText.color = _winColor;
         }
+    }
+
+    private void DisplayWinCanvas()
+    {
+        _winCanvas.gameObject.SetActive(true);
     }
 }
