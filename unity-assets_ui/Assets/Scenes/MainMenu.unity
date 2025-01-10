@@ -553,6 +553,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 775291304313491699, guid: 8279e7da504c4414dbc4d817d98b2051, type: 3}
   m_PrefabInstance: {fileID: 775291303691740596}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &721111097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 721111098}
+  m_Layer: 0
+  m_Name: 6988d352833a0eea5ae83a55dd4a4465746d8fee
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &721111098
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721111097}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 710.97003, y: 513.405, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1076148739 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6871587247571601695, guid: f18b62b33e7c9ae4f83bece29ec0928f, type: 3}
