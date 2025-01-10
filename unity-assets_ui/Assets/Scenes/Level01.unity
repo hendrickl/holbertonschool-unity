@@ -1897,37 +1897,6 @@ MonoBehaviour:
   _timerText: {fileID: 601414690}
   _increasedFontSize: 60
   _winColor: {r: 0, g: 1, b: 0, a: 1}
---- !u!1 &747956664
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 747956665}
-  m_Layer: 0
-  m_Name: StateOfWork26a4b62482bbcd9e569ac100216cbffb9b1e8a10
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &747956665
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747956664}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 946.00745, y: 442.78177, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 25
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &666733507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3872,37 +3841,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1835635995
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1835635996}
-  m_Layer: 0
-  m_Name: StateOfWork_Task10
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1835635996
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1835635995}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1795.4135, y: 818.9468, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 27
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1842016730
 GameObject:
   m_ObjectHideFlags: 0
@@ -4481,7 +4419,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3365473155535316766, guid: 75b0977d53ae1b34b8e52a6400709143, type: 3}
       propertyPath: m_text
-      value: 0:00.03
+      value: 0:00.00
       objectReference: {fileID: 0}
     - target: {fileID: 3365473155535316766, guid: 75b0977d53ae1b34b8e52a6400709143, type: 3}
       propertyPath: m_margin.z
