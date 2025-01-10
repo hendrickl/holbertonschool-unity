@@ -1989,6 +1989,37 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 981d520092759244fbff46ef9a54405c, type: 3}
   m_PrefabInstance: {fileID: 1301570020}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &896488525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 896488526}
+  m_Layer: 0
+  m_Name: StateOfWorke7750233bada577933b9f97b710771773c9f809a
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &896488526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896488525}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 946.00745, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 25
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &926642814 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3047078706608272710, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
