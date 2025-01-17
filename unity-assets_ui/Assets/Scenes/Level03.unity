@@ -1766,7 +1766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timer: {fileID: 926642828}
-  _winCanvas: {fileID: 0}
+  _winCanvas: {fileID: 1917771846}
   _timerText: {fileID: 601414690}
   _increasedFontSize: 60
   _winColor: {r: 0, g: 1, b: 0, a: 1}
@@ -2039,7 +2039,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0425d8b054b21884ea656857defecb9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 601414690}
+  _timerText: {fileID: 601414690}
+  _finalTimeText: {fileID: 1195761755}
 --- !u!1 &997086295 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 51b15b439fb511d498648084a27fdafe, type: 3}
@@ -2646,6 +2647,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06779472, y: 1, z: 0.0677943}
   m_Center: {x: 0.004315776, y: 0, z: 0.00000020044439}
+--- !u!114 &1195761755 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6765060463058600791, guid: 212cc11d665d272489bef876411a1207, type: 3}
+  m_PrefabInstance: {fileID: 1000142861}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1281701510 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 32130d6bb46e91b4aa3cc91b5d227f90, type: 3}
@@ -4102,6 +4114,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 12d58c223c509e74ebdb9f3888779425, type: 3}
   m_PrefabInstance: {fileID: 1861290854}
+  m_PrefabAsset: {fileID: 0}
+--- !u!223 &1917771846 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 7741829899890395569, guid: 212cc11d665d272489bef876411a1207, type: 3}
+  m_PrefabInstance: {fileID: 1000142861}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2054870979
 GameObject:
