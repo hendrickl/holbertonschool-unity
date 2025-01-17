@@ -1127,6 +1127,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525921143}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &531342293 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7602956257897724441, guid: 212cc11d665d272489bef876411a1207, type: 3}
+  m_PrefabInstance: {fileID: 1000142861}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &539867202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1666,6 +1677,7 @@ GameObject:
   - component: {fileID: 666733503}
   - component: {fileID: 666733502}
   - component: {fileID: 666733506}
+  - component: {fileID: 666733507}
   m_Layer: 0
   m_Name: WinFlag
   m_TagString: Untagged
@@ -1770,6 +1782,19 @@ MonoBehaviour:
   _timerText: {fileID: 601414690}
   _increasedFontSize: 60
   _winColor: {r: 0, g: 1, b: 0, a: 1}
+--- !u!114 &666733507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666733501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4784110a7a6a2ca47b3735cdb0253274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuButton: {fileID: 531342293}
 --- !u!114 &759426701 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6501148934917432894, guid: 48cc60f5971742147861d395d34a98b5, type: 3}
