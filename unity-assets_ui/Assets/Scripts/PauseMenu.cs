@@ -97,6 +97,7 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
+        Debug.Log($"PauseMenu : MainMenu Button is clicked");
         SceneManager.LoadScene(0);
     }
 

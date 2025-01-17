@@ -324,6 +324,7 @@ MonoBehaviour:
   _level03Button: {fileID: 7741829901240577966}
   _optionsButton: {fileID: 7741829899842141059}
   _exitButton: {fileID: 7741829900407076047}
+  _menuButton: {fileID: 6436569101303803370, guid: 8437cd34684f7034da6c8181523b7692, type: 3}
 --- !u!1 &7741829900037116593
 GameObject:
   m_ObjectHideFlags: 0
