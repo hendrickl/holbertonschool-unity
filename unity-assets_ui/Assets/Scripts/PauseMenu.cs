@@ -6,7 +6,10 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseCanvas;
+    [SerializeField] private GameObject _mainMenuCanvas;
+
     [SerializeField] private TimerTrigger _timer;
+
     [SerializeField] private Button _resumeButton;
     [SerializeField] private Button _restartButton;
     [SerializeField] private Button _mainMenuButton;
@@ -22,6 +25,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         _pauseCanvas.SetActive(false);
+        _mainMenuCanvas.SetActive(false);
 
         if (_resumeButton != null)
             _resumeButton.onClick.AddListener(Resume);
@@ -98,7 +102,8 @@ public class PauseMenu : MonoBehaviour
     public void MainMenu()
     {
         Debug.Log($"PauseMenu : MainMenu Button is clicked");
-        SceneManager.LoadScene(0);
+        _pauseCanvas.SetActive(false);
+        _mainMenuCanvas.SetActive(true);
     }
 
     public void Options()
