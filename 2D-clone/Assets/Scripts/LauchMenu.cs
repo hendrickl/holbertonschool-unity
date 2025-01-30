@@ -18,15 +18,24 @@ public class LaunchMenu : MonoBehaviour
         _logoSmallFormat.SetActive(false);
 
         StartCoroutine("AnimLogo");
+        StartCoroutine("AnimButton");
     }
 
     private IEnumerator AnimLogo()
     {
         yield return new WaitForSeconds(2.5f);
         _logoBigFormat.SetActive(false);
-        _logoSmallFormat.SetActive(true);
 
+        yield return new WaitForSeconds(2.5f);
+        _logoSmallFormat.SetActive(true);
+    }
+
+    private IEnumerator AnimButton()
+    {
+        yield return new WaitForSeconds(3f);
         _startButton.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
         _quitButton.gameObject.SetActive(true);
     }
 
