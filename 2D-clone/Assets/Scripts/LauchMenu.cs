@@ -23,16 +23,16 @@ public class LaunchMenu : MonoBehaviour
 
     private IEnumerator AnimLogo()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         _logoBigFormat.SetActive(false);
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2f);
         _logoSmallFormat.SetActive(true);
     }
 
     private IEnumerator AnimButton()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.5f);
         _startButton.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1f);
