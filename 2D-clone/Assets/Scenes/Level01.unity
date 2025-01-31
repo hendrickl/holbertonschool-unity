@@ -531,7 +531,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 655301506}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1620031344}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &655301506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -815,6 +827,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 19161e550bc08eb4bbd53a47d4cd06ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _restartButton: {fileID: 564160880}
+  _resumeButton: {fileID: 1719716113}
+--- !u!114 &1620031344 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8257158726826429118, guid: 99c3fb523234fe442aff21dc74fce63a, type: 3}
+  m_PrefabInstance: {fileID: 1620031341}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620031342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5de5235f9941084b82722a87209c06f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1719716111
