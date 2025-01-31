@@ -3,9 +3,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LaunchMenu : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     public AudioManager AudioManager;
+    
     [SerializeField] private AudioClip _audioOnClick;
 
     [SerializeField] private Button _startButton;

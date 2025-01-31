@@ -10,11 +10,20 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        // PlaySound(_audioBackgroundMusic);
+        TriggerAudio(_audioBackgroundMusic);
     }
 
     public void TriggerAudio(AudioClip p_audioClip)
     {
+        if (p_audioClip == _audioBackgroundMusic)
+        {
+            _audioSource.loop = true;
+        }
+        else
+        {
+            _audioSource.loop = false;
+        }
+            
         _audioSource.clip = p_audioClip;
         _audioSource.Play();
     }
