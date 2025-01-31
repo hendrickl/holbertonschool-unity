@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class LaunchMenu : MonoBehaviour
 {
-    [SerializeField] private Button _startButton; 
+    public AudioManager AudioManager;
+    [SerializeField] private AudioClip _audioOnClick;
+
+    [SerializeField] private Button _startButton;
     [SerializeField] private Button _quitButton;
 
     [SerializeField] private GameObject _logoBigFormat;
@@ -39,10 +42,23 @@ public class LaunchMenu : MonoBehaviour
         _quitButton.gameObject.SetActive(true);
     }
 
-    public void LevelSelect(int level)
+    private IEnumerator LoadSceneAfterOnClickSoundCoroutine(int index, float time)
     {
-        SceneManager.LoadScene(level);
+        yield return new WaitForSeconds(time);
+        LoadScene(index);
     }
+
+    private void LoadScene(int index)
+    {
+        SceneManager.LoadScene(index);
+    }
+
+     public void LoadSceneWithOnClickSound(int index)
+    {
+        AudioManager.TriggerAudio(_audioOnClick);
+        StartCoroutine(LoadSceneAfterOnClickSoundCoroutine(index, 0.35f));
+    }
+
 
     public void ExitGame()
     {
