@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
     public AudioManager AudioManager;
+    public PauseMenu PauseMenu;
     
     [SerializeField] private AudioClip _audioOnClick;
 
@@ -17,9 +18,14 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        _startButton.gameObject.SetActive(false);
-        _quitButton.gameObject.SetActive(false);
-        _logoSmallFormat.SetActive(false);
+        if (_startButton != null)
+            _startButton.gameObject.SetActive(false);
+        
+        if (_quitButton != null)
+            _quitButton.gameObject.SetActive(false);
+        
+        if (_logoSmallFormat != null)
+            _logoSmallFormat.SetActive(false);
 
         StartCoroutine("AnimLogo");
         StartCoroutine("AnimButton");
@@ -28,19 +34,28 @@ public class MenuManager : MonoBehaviour
     private IEnumerator AnimLogo()
     {
         yield return new WaitForSeconds(2f);
-        _logoBigFormat.SetActive(false);
+
+        if (_logoBigFormat != null)
+            _logoBigFormat.SetActive(false);
 
         yield return new WaitForSeconds(2f);
-        _logoSmallFormat.SetActive(true);
+
+        
+        if (_logoSmallFormat != null)
+            _logoSmallFormat.SetActive(true);
     }
 
     private IEnumerator AnimButton()
     {
         yield return new WaitForSeconds(2.5f);
-        _startButton.gameObject.SetActive(true);
+
+        if (_startButton != null)
+            _startButton.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1f);
-        _quitButton.gameObject.SetActive(true);
+
+        if (_quitButton != null)
+            _quitButton.gameObject.SetActive(true);
     }
 
     private IEnumerator LoadSceneAfterOnClickSoundCoroutine(int index, float time)
@@ -54,12 +69,16 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(index);
     }
 
-     public void LoadSceneWithOnClickSound(int index)
+    public void LoadSceneWithOnClickSound(int index)
     {
         AudioManager.TriggerAudio(_audioOnClick);
         StartCoroutine(LoadSceneAfterOnClickSoundCoroutine(index, 0.35f));
     }
 
+    public void RestartGame()
+    {
+        PauseMenu.Restart();   
+    }
 
     public void ExitGame()
     {
