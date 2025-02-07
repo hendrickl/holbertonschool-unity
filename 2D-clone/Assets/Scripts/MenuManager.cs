@@ -27,11 +27,11 @@ public class MenuManager : MonoBehaviour
         if (_logoSmallFormat != null)
             _logoSmallFormat.SetActive(false);
 
-        StartCoroutine("AnimLogo");
-        StartCoroutine("AnimButton");
+        StartCoroutine("ShowLogoWithDelayCoroutine");
+        StartCoroutine("ShowButtonWithDelayCoroutine");
     }
 
-    private IEnumerator AnimLogo()
+    private IEnumerator ShowLogoWithDelayCoroutine()
     {
         yield return new WaitForSeconds(2f);
 
@@ -45,7 +45,7 @@ public class MenuManager : MonoBehaviour
             _logoSmallFormat.SetActive(true);
     }
 
-    private IEnumerator AnimButton()
+    private IEnumerator ShowButtonWithDelayCoroutine()
     {
         yield return new WaitForSeconds(2.5f);
 
@@ -58,21 +58,16 @@ public class MenuManager : MonoBehaviour
             _quitButton.gameObject.SetActive(true);
     }
 
-    private IEnumerator LoadSceneAfterOnClickSoundCoroutine(int index, float time)
+    private IEnumerator LoadSceneAfterClickSoundCoroutine(int p_index, float p_time)
     {
-        yield return new WaitForSeconds(time);
-        LoadScene(index);
+        yield return new WaitForSeconds(p_time);
+        SceneManager.LoadScene(p_index);
     }
 
-    private void LoadScene(int index)
-    {
-        SceneManager.LoadScene(index);
-    }
-
-    public void LoadSceneWithOnClickSound(int index)
+    public void LoadSceneWithClickSound(int p_index)
     {
         AudioManager.TriggerAudio(_audioOnClick);
-        StartCoroutine(LoadSceneAfterOnClickSoundCoroutine(index, 0.35f));
+        StartCoroutine(LoadSceneAfterClickSoundCoroutine(p_index, 0.35f));
     }
 
     public void RestartGame()
