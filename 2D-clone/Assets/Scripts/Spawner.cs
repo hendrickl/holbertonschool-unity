@@ -12,12 +12,7 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         // SpawnTetriminos();
-        StartCoroutine("SpawnTetriminoAfterDelay");
-    }
-
-    private void Update()
-    {
-        SpawnTetriminoAfterDelay();
+        StartCoroutine("SpawnTetriminoAfterDelayCoroutine");
     }
 
     private void OnTriggerEnter(Collider p_other)
@@ -25,17 +20,17 @@ public class Spawner : MonoBehaviour
         if (p_other.gameObject == _currentTetrimino)
         {
             Debug.Log($"Spawner - OnTriggerEnter: other is {p_other}");
-            OnTetriminoLanded();
+            SpawnTetriminoWhenLanded();
         }
     }
 
-    private IEnumerator SpawnTetriminoAfterDelay()
+    private IEnumerator SpawnTetriminoAfterDelayCoroutine()
     {
         yield return new WaitForSeconds(2f);
-        SpawnTetriminos();
+        SpawnTetrimino();
     }
 
-    private void SpawnTetriminos()
+    private void SpawnTetrimino()
     {
         if (_tetriminos.Length == 0)
         {
@@ -48,15 +43,15 @@ public class Spawner : MonoBehaviour
             int randomIndex = Random.Range(0, _tetriminos.Length);
             _currentTetrimino = Instantiate(_tetriminos[randomIndex], _spawnPoint.position, Quaternion.identity);
             
-            Debug.Log($"Spawner - SpawnTetriminos: current tetrimino is {_currentTetrimino}");
+            Debug.Log($"Spawner - SpawnTetrimino: current tetrimino is {_currentTetrimino}");
         }
     }
 
-    private void OnTetriminoLanded()
+    private void SpawnTetriminoWhenLanded()
     {
         _currentTetrimino = null;
+        Debug.Log($"Spawner - SpawnTetriminoWhenLanded: current tetrimino is {_currentTetrimino}");
 
-        Debug.Log($"Spawner - OnTetriminoLanded: current tetrimino is {_currentTetrimino}");
-        SpawnTetriminos();
+        SpawnTetrimino();
     }
 }
