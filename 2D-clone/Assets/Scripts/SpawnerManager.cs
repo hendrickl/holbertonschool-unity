@@ -1,9 +1,9 @@
 using UnityEngine;
-using System.Collections;
 
 public class SpawnerManager : MonoBehaviour
 {
     public FloorChecker FloorChecker;
+    public TetriminoChecker TetriminoChecker;
 
     [SerializeField] private GameObject[] _tetriminos;
     [SerializeField] private Transform _spawnPoint;
@@ -13,22 +13,15 @@ public class SpawnerManager : MonoBehaviour
         Debug.Log($"SpawnerManager: The tetrimino is landed : {FloorChecker.tetriminoIsLanded}");
 
         SpawnTetrimino();
-        StartCoroutine("SpawnTetriminoAfterDelayCoroutine");
     }
 
     private void OnTriggerEnter(Collider p_other)
     {
         if (p_other.gameObject == FloorChecker.currentTetrimino)
         {
-            Debug.Log($"SpawnerManager/OnTriggerEnter: {gameObject} is collisioned with {p_other.name}");
+            Debug.Log($"SpawnerManager/OnTriggerEnter: {gameObject} has collided with {p_other.name}");
             SpawnTetriminoWhenLanded();
         }
-    }
-
-    private IEnumerator SpawnTetriminoAfterDelayCoroutine()
-    {
-        yield return new WaitForSeconds(2f);
-        SpawnTetrimino();
     }
 
     private void SpawnTetrimino()

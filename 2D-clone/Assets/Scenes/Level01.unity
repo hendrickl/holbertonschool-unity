@@ -925,6 +925,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FloorChecker: {fileID: 1785867191}
+  TetriminoChecker: {fileID: 3415795916426358673, guid: 82bb14bf3d4884a449d33371a2007d69, type: 3}
   _tetriminos:
   - {fileID: 4593227087844411879, guid: 82bb14bf3d4884a449d33371a2007d69, type: 3}
   - {fileID: 2074930808133124712, guid: 23dcf1ce6a371e948976c51f51638be2, type: 3}

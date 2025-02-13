@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class FloorChecker : MonoBehaviour
@@ -11,7 +10,7 @@ public class FloorChecker : MonoBehaviour
     {
         if (p_other.gameObject == currentTetrimino)
         {
-            Debug.Log($"FloorChecker/OnTriggerEnter: {gameObject} is collisioned with {p_other.name}");
+            Debug.Log($"FloorChecker/OnTriggerEnter: {gameObject} has collided with {p_other.name}");
             tetriminoIsLanded = true;
         }
     }
