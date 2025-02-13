@@ -804,6 +804,7 @@ GameObject:
   - component: {fileID: 1785867188}
   - component: {fileID: 1785867187}
   - component: {fileID: 1785867191}
+  - component: {fileID: 1785867192}
   m_Layer: 0
   m_Name: FloorDetector
   m_TagString: Untagged
@@ -909,6 +910,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091a27a566e103b4296ec396e1cbbaba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTetrimino: {fileID: 0}
+  tetriminoIsLanded: 0
+--- !u!114 &1785867192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785867186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 560020c484d05fc47927abc085750c1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloorChecker: {fileID: 1785867191}
   _tetriminos:
   - {fileID: 4593227087844411879, guid: 82bb14bf3d4884a449d33371a2007d69, type: 3}
   - {fileID: 2074930808133124712, guid: 23dcf1ce6a371e948976c51f51638be2, type: 3}
@@ -961,7 +977,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1926276971}
   - component: {fileID: 1926276970}
-  - component: {fileID: 1926276972}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -996,27 +1011,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1926276972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926276969}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 091a27a566e103b4296ec396e1cbbaba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tetriminos:
-  - {fileID: 4593227087844411879, guid: 82bb14bf3d4884a449d33371a2007d69, type: 3}
-  - {fileID: 2074930808133124712, guid: 23dcf1ce6a371e948976c51f51638be2, type: 3}
-  - {fileID: 3778324547311771845, guid: fecf2d11a969b5b45a359a85e140af60, type: 3}
-  - {fileID: 8386212238220747801, guid: 32ac1cdcfa374ce44ae1ee3a9b204cb6, type: 3}
-  - {fileID: 8353500503638269737, guid: fb5a95ddb202d90418832fe2231ba8f1, type: 3}
-  - {fileID: 8171544492689030106, guid: b8360699c6903744790b0e0864de70d7, type: 3}
-  - {fileID: 6096692172795027748, guid: 7dadb65b31fb2434bad4759723f8fc95, type: 3}
-  _spawnPoint: {fileID: 1290242487}
 --- !u!114 &2008620941 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1675363354913723001, guid: c79a6360de542c9468dc432267b18be4, type: 3}
