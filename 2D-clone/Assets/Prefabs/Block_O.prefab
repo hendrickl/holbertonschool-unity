@@ -400,8 +400,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9911141, y: 2.0013843, z: 1}
-  m_Center: {x: 0.49555707, y: -0.5006926, z: 0}
+  m_Size: {x: 2, y: 2, z: 1}
+  m_Center: {x: 0.5, y: -0.5, z: 0}
 --- !u!114 &2407554068233249195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,6 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0c732dd7537574ca3730daeac39a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tetriminoHasCollided: 0
 --- !u!114 &8747008382475972323
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -58,8 +58,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 4.002063, z: 1}
-  m_Center: {x: 0, y: -1.5010316, z: 0}
+  m_Size: {x: 1, y: 4, z: 1}
+  m_Center: {x: 0, y: -1.5, z: 0}
 --- !u!54 &7478604067193934816
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99,9 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0c732dd7537574ca3730daeac39a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TetriminoMovement: {fileID: 0}
-  _movementSpeed: 0
-  canMove: 0
+  tetriminoHasCollided: 0
 --- !u!114 &3521761866619461516
 MonoBehaviour:
   m_ObjectHideFlags: 0
