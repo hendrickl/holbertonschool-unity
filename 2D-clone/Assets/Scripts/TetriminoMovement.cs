@@ -4,6 +4,17 @@ public class TetriminoMovement : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed;
 
+    private float _currentYPosition;
+    private float _previousYPosition;
+
+    private void Start()
+    {
+        _currentYPosition = gameObject.transform.position.y;
+        _previousYPosition = gameObject.transform.position.y;
+
+        Debug.Log($"TetriminoMovement: current position = {gameObject.transform.position.y}");
+    }
+
     private void FixedUpdate() 
     {
         MoveDown();    

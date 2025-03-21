@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0c732dd7537574ca3730daeac39a73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnManager: {fileID: 5504908649387906334, guid: ee376b5a528329a43ba09808fd3acc8b, type: 3}
   tetriminoHasCollided: 0
 --- !u!114 &6880280690008756515
 MonoBehaviour:
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41ec3b6404581bd45ac444db043c3fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _movementSpeed: 5
+  _movementSpeed: 4
 --- !u!1 &5290134568827380005
 GameObject:
   m_ObjectHideFlags: 0
