@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class CutsceneController : MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
@@ -22,7 +21,7 @@ public class CutsceneController : MonoBehaviour
         }
         else
         {
-            Debug.Log($"CutsceneController: Animator component nit assigned");
+            Debug.Log($"CutsceneController: Animator component not assigned");
             EndCutscene();
         }
     }
