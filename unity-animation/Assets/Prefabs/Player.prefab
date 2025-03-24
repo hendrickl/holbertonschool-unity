@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseCanvas: {fileID: 0}
+  _mainMenuCanvas: {fileID: 0}
   _timer: {fileID: 0}
   _resumeButton: {fileID: 0}
   _restartButton: {fileID: 0}

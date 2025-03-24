@@ -2260,7 +2260,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 262886461}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0425d8b054b21884ea656857defecb9c, type: 3}
   m_Name: 
@@ -2784,6 +2784,7 @@ GameObject:
   - component: {fileID: 1190541724}
   - component: {fileID: 1190541723}
   - component: {fileID: 1190541726}
+  - component: {fileID: 1190541727}
   m_Layer: 0
   m_Name: CutsceneCamera
   m_TagString: Untagged
@@ -2878,6 +2879,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1190541727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190541722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ca5e30aa13c1a4594bfff60b27ffbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mainCamera: {fileID: 2125132646}
+  _playerController: {fileID: 926642819, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
+  _timerCanvas: {fileID: 1640027645}
+  _animator: {fileID: 1190541726}
 --- !u!1 &1281701510 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 32130d6bb46e91b4aa3cc91b5d227f90, type: 3}
@@ -3827,6 +3844,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!223 &1640027645 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 3365473155745088577, guid: 75b0977d53ae1b34b8e52a6400709143, type: 3}
+  m_PrefabInstance: {fileID: 3365473156110449468}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1762730672
 GameObject:
   m_ObjectHideFlags: 0
@@ -4727,7 +4749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3365473155745088582, guid: 75b0977d53ae1b34b8e52a6400709143, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75b0977d53ae1b34b8e52a6400709143, type: 3}
@@ -4738,6 +4760,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 926642819, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 926642819, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
       propertyPath: _startPosition.y
       value: 15
