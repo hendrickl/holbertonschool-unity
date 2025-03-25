@@ -12,16 +12,27 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask _ground;
 
     private Rigidbody _rigidbody;
+    private bool _playerHasPermissionToMove;
+    private bool _playerHasLandedOnGround;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>(); 
         transform.position = _startPosition;
+        _playerHasPermissionToMove = false;
+        _playerHasLandedOnGround = false;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        // We check if the player touched the ground for the first time
+        if (!_playerHasLandedOnGround && IsGrounded())
+        {
+            _playerHasLandedOnGround = true;
+            _playerHasPermissionToMove = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && _playerHasLandedOnGround)
         {
             Jump();
         }
@@ -33,10 +44,17 @@ public class PlayerController : MonoBehaviour
     // Move the player based on WASD and arrows input
     private void MovePlayer()
     {
-        float l_horizontalInput = Input.GetAxis("Horizontal"); 
-        float l_verticalInput = Input.GetAxisRaw("Vertical"); 
+        if (_playerHasPermissionToMove)
+        {
+            float l_horizontalInput = Input.GetAxis("Horizontal"); 
+            float l_verticalInput = Input.GetAxisRaw("Vertical"); 
 
-        _rigidbody.velocity = new Vector3(l_horizontalInput * _moveSpeed, _rigidbody.velocity.y, l_verticalInput * _moveSpeed);
+            _rigidbody.velocity = new Vector3(l_horizontalInput * _moveSpeed, _rigidbody.velocity.y, l_verticalInput * _moveSpeed);
+        }
+        else 
+        {
+            _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0); // The player can fall under the effect of gravity but cannot move horizontally
+        }
     }
 
     // Make jump the player when the space button is pressed
@@ -49,8 +67,9 @@ public class PlayerController : MonoBehaviour
     // Check if the player is grounded
     private bool IsGrounded()
     {
-        Debug.Log($"PlayerController - IsGrounded : { Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground)}");
-        return Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
+        bool isGrounded = Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
+        // Debug.Log($"PlayerController - IsGrounded : {isGrounded}");
+        return isGrounded;
     }
 
     private void CheckFall()
@@ -58,11 +77,28 @@ public class PlayerController : MonoBehaviour
         if (transform.position.y < _fallThreshold)
         {
             ResetPlayerPosition();
+
+            // If the player falls the control state is reset
+            if (_playerHasLandedOnGround) 
+            {
+                _playerHasPermissionToMove = true; // Keep controls enabled after fall if already enabled previously 
+            }
+            else
+            {
+                _playerHasPermissionToMove = false;
+            }
         }
     }
 
     private void ResetPlayerPosition()
     {
         transform.position = _resetPosition;
+    }
+
+    // Method to reset player state if necessary
+    public void ResetPlayerState()
+    {
+        _playerHasLandedOnGround = false;
+        _playerHasPermissionToMove = false;
     }
 }
