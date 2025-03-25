@@ -13,26 +13,26 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rigidbody;
     private bool _playerHasPermissionToMove;
-    private bool _hasLandedOnGround;
+    private bool _playerHasLandedOnGround;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>(); 
         transform.position = _startPosition;
         _playerHasPermissionToMove = false;
-        _hasLandedOnGround = false;
+        _playerHasLandedOnGround = false;
     }
 
     private void Update()
     {
         // We check if the player touched the ground for the first time
-        if (!_hasLandedOnGround && IsGrounded())
+        if (!_playerHasLandedOnGround && IsGrounded())
         {
-            _hasLandedOnGround = true;
+            _playerHasLandedOnGround = true;
             _playerHasPermissionToMove = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && _hasLandedOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && _playerHasLandedOnGround)
         {
             Jump();
         }
@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         bool isGrounded = Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
-        Debug.Log($"PlayerController - IsGrounded : {isGrounded}");
+        // Debug.Log($"PlayerController - IsGrounded : {isGrounded}");
         return isGrounded;
     }
 
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
             ResetPlayerPosition();
 
             // If the player falls the control state is reset
-            if (_hasLandedOnGround) 
+            if (_playerHasLandedOnGround) 
             {
                 _playerHasPermissionToMove = true; // Keep controls enabled after fall if already enabled previously 
             }
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
     // Method to reset player state if necessary
     public void ResetPlayerState()
     {
-        _hasLandedOnGround = false;
+        _playerHasLandedOnGround = false;
         _playerHasPermissionToMove = false;
     }
 }
