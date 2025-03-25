@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
+// This script manages cutscene behavior
 public class CutsceneController : MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
