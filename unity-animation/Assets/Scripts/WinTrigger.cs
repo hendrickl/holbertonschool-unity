@@ -12,8 +12,8 @@ public class WinTrigger : MonoBehaviour
 
     private void Start()
     {
-        _winCanvas.gameObject.SetActive(false)
-;    }
+        _winCanvas.gameObject.SetActive(false);    
+    }
 
     private void OnTriggerEnter(Collider p_other)
     {
