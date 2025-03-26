@@ -46,13 +46,14 @@ GameObject:
   - component: {fileID: 926642820}
   - component: {fileID: 926642819}
   - component: {fileID: 926642832}
+  - component: {fileID: 5248504560075401267}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5267705039484550072
 Transform:
   m_ObjectHideFlags: 0
@@ -156,7 +157,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3047078706608272710}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31bdd5c5136967d4da7c91eb9cb1336a, type: 3}
   m_Name: 
@@ -166,7 +167,7 @@ MonoBehaviour:
   _groundContactPoint: {fileID: 1408051492016878343}
   _fallThreshold: -20
   _startPosition: {x: 0, y: 1.25, z: 3.5}
-  _resetPosition: {x: 0, y: 0, z: 3.5}
+  _resetPosition: {x: 0, y: 3, z: 3.5}
   _ground:
     serializedVersion: 2
     m_Bits: 64
@@ -189,3 +190,17 @@ MonoBehaviour:
   _restartButton: {fileID: 0}
   _mainMenuButton: {fileID: 0}
   _optionsButton: {fileID: 0}
+--- !u!114 &5248504560075401267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3047078706608272710}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0425d8b054b21884ea656857defecb9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _timerText: {fileID: 0}
+  _finalTimeText: {fileID: 0}
