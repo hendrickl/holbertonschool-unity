@@ -392,7 +392,7 @@ PrefabInstance:
     - target: {fileID: 926642832, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
       propertyPath: _timer
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 422590497}
     - target: {fileID: 926642832, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
       propertyPath: _pauseCanvas
       value: 
@@ -984,6 +984,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06779431, y: 1, z: 0.05916317}
   m_Center: {x: 0.0043159653, y: 0, z: -0.004315972}
+--- !u!114 &422590497 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3963449761713479965, guid: 3321a497054a8d94c8b0e840ceee6362, type: 3}
+  m_PrefabInstance: {fileID: 520501990}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c12977dc7d76eff4eb2923486ea95c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &431712368 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 7741829899890395569, guid: 212cc11d665d272489bef876411a1207, type: 3}

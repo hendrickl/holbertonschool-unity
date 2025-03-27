@@ -38,21 +38,24 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        MovePlayerLinearly();
         RotatePlayer();
+        MovePlayer();
         CheckFall();
     }
 
     // Move the player based on WASD and arrows input
-    private void MovePlayerLinearly()
+    private void MovePlayer()
     {
         if (_playerHasPermissionToMove)
         {
             float horizontalInput = Input.GetAxis("Horizontal"); 
             float verticalInput = Input.GetAxisRaw("Vertical"); 
 
+            Vector3 movementOnZ = transform.forward * verticalInput;
+            Vector3 movementOnX = transform.right * horizontalInput;
+
             // Use the player's facing direction for movement
-            Vector3 moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+            Vector3 moveDirection = movementOnZ + movementOnX;
             moveDirection.Normalize();
 
             _rigidbody.velocity = new Vector3(moveDirection.x * _moveSpeed, _rigidbody.velocity.y, moveDirection.z * _moveSpeed);
