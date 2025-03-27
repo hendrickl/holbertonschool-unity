@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private float _rotationSpeed = 300f;
     [SerializeField] private float _jumpForce = 10f;
     [SerializeField] private Transform _groundContactPoint;
     [SerializeField] private float _fallThreshold = -20f;
@@ -37,23 +38,44 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        MovePlayer();
+        MovePlayerLinearly();
+        RotatePlayer();
         CheckFall();
     }
 
     // Move the player based on WASD and arrows input
-    private void MovePlayer()
+    private void MovePlayerLinearly()
     {
         if (_playerHasPermissionToMove)
         {
-            float l_horizontalInput = Input.GetAxis("Horizontal"); 
-            float l_verticalInput = Input.GetAxisRaw("Vertical"); 
+            float horizontalInput = Input.GetAxis("Horizontal"); 
+            float verticalInput = Input.GetAxisRaw("Vertical"); 
 
-            _rigidbody.velocity = new Vector3(l_horizontalInput * _moveSpeed, _rigidbody.velocity.y, l_verticalInput * _moveSpeed);
+            // Use the player's facing direction for movement
+            Vector3 moveDirection = transform.forward * verticalInput + transform.right * horizontalInput;
+            moveDirection.Normalize();
+
+            _rigidbody.velocity = new Vector3(moveDirection.x * _moveSpeed, _rigidbody.velocity.y, moveDirection.z * _moveSpeed);
+            // _rigidbody.velocity = new Vector3(horizontalInput * _moveSpeed, _rigidbody.velocity.y, verticalInput * _moveSpeed);
         }
         else 
         {
             _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0); // The player can fall under the effect of gravity but cannot move horizontally
+        }
+    }
+
+    // Rotate player gradually based on horizontal input 
+    private void RotatePlayer()
+    {
+        if (_playerHasPermissionToMove)
+        {
+            float horizontalInput = Input.GetAxis("Horizontal");
+
+            if (horizontalInput != 0)
+            {
+                float rotationAngle = horizontalInput * _rotationSpeed * Time.deltaTime;
+                transform.Rotate(0, rotationAngle, 0);
+            }   
         }
     }
 

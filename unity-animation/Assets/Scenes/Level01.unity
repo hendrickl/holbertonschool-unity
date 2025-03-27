@@ -385,6 +385,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 926642819, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
+      propertyPath: _rotationSpeed
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 926642832, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
       propertyPath: _timer
       value: 
@@ -416,6 +420,10 @@ PrefabInstance:
     - target: {fileID: 3047078706608272710, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4673640643505481727, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5248504560075401267, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
       propertyPath: _timerText
