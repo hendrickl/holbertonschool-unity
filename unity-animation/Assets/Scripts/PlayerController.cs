@@ -11,35 +11,46 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 _startPosition; 
     [SerializeField] private Vector3 _resetPosition; 
     [SerializeField] private LayerMask _ground;
-
     [SerializeField] private Animator _animator;
+
     private Rigidbody _rigidbody;
     private bool _playerHasPermissionToMove;
     private bool _playerHasLandedOnGround;
     private bool _playerIsRunning;
+    private bool _playerIsJumping;
+    private bool _playerWasGroundedLastFrame; // Detect when the player lands
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>(); 
-        // _animator = GetComponent<Animator>();
 
         transform.position = _startPosition;
         
         _playerHasPermissionToMove = false;
         _playerHasLandedOnGround = false;
         _playerIsRunning = false;
+        _playerIsJumping = false;
+        _playerWasGroundedLastFrame = false; 
     }
 
     private void Update()
     {
-        // We check if the player touched the ground for the first time
-        if (!_playerHasLandedOnGround && IsGrounded())
+        // Check if the player touched the ground for the first time
+        if (!_playerHasLandedOnGround && PlayerIsGrounded())
         {
             _playerHasLandedOnGround = true;
             _playerHasPermissionToMove = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded() && _playerHasLandedOnGround)
+        // Detect landing from jump
+        if (_playerIsJumping && !_playerWasGroundedLastFrame && PlayerIsGrounded())
+        {
+            _playerIsJumping = false;
+        }
+
+        _playerWasGroundedLastFrame = PlayerIsGrounded(); // Remember grounded state for the next frame
+
+        if (Input.GetKeyDown(KeyCode.Space) && PlayerIsGrounded() && _playerHasLandedOnGround)
         {
             Jump();
         }
@@ -47,7 +58,7 @@ public class PlayerController : MonoBehaviour
         RotatePlayer();
         MovePlayer();
         CheckFall();
-        UpdateRunningAnimation();
+        UpdateAnimations();
     }
 
     // Move the player based on WASD and arrows input
@@ -91,23 +102,25 @@ public class PlayerController : MonoBehaviour
     // Make jump the player when the space button is pressed
     private void Jump()
     {
+        _playerIsJumping = true;
         _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _jumpForce, _rigidbody.velocity.z);
         Debug.Log($"Jump is called");
     }
 
     // Check if the player is grounded
-    private bool IsGrounded()
+    private bool PlayerIsGrounded()
     {
-        bool isGrounded = Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
-        // Debug.Log($"PlayerController - IsGrounded : {isGrounded}");
-        return isGrounded;
+        bool playerIsGrounded = Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
+        // Debug.Log($"PlayerController - PlayerPlayerIsGrounded : {PlayerPlayerIsGrounded}");
+        return playerIsGrounded;
     }
 
-    private void UpdateRunningAnimation()
+    private void UpdateAnimations()
     {
         if (_animator != null)
         {
-            _animator.SetBool("isRunning", _playerIsRunning);
+            _animator.SetBool("isRunning", _playerIsRunning); //! Remember to check jumping state
+            _animator.SetBool("isJumping", _playerIsJumping);
         }
         else
         {
@@ -130,6 +143,10 @@ public class PlayerController : MonoBehaviour
             {
                 _playerHasPermissionToMove = false;
             }
+
+            // Reset animation states //! Create a method for that
+            _playerIsRunning = false;
+            _playerIsJumping = false;
         }
     }
 
@@ -143,5 +160,7 @@ public class PlayerController : MonoBehaviour
     {
         _playerHasLandedOnGround = false;
         _playerHasPermissionToMove = false;
+        _playerIsRunning = false;
+        _playerIsJumping = false;
     }
 }
