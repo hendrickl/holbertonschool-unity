@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 5f;
+    [SerializeField] private float _rotationSpeed = 300f;
     [SerializeField] private float _jumpForce = 10f;
     [SerializeField] private Transform _groundContactPoint;
     [SerializeField] private float _fallThreshold = -20f;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
+        RotatePlayer();
         MovePlayer();
         CheckFall();
     }
@@ -46,14 +48,34 @@ public class PlayerController : MonoBehaviour
     {
         if (_playerHasPermissionToMove)
         {
-            float l_horizontalInput = Input.GetAxis("Horizontal"); 
-            float l_verticalInput = Input.GetAxisRaw("Vertical"); 
+            float verticalInput = Input.GetAxisRaw("Vertical"); 
 
-            _rigidbody.velocity = new Vector3(l_horizontalInput * _moveSpeed, _rigidbody.velocity.y, l_verticalInput * _moveSpeed);
+            Vector3 movementOnZ = transform.forward * verticalInput;
+
+            // Use the player's facing direction for movement
+            Vector3 moveDirection = movementOnZ;
+            moveDirection.Normalize();
+
+            _rigidbody.velocity = new Vector3(moveDirection.x * _moveSpeed, _rigidbody.velocity.y, moveDirection.z * _moveSpeed);
         }
         else 
         {
             _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0); // The player can fall under the effect of gravity but cannot move horizontally
+        }
+    }
+
+    // Rotate player gradually based on horizontal input 
+    private void RotatePlayer()
+    {
+        if (_playerHasPermissionToMove)
+        {
+            float horizontalInput = Input.GetAxis("Horizontal");
+
+            if (horizontalInput != 0)
+            {
+                float rotationAngle = horizontalInput * _rotationSpeed * Time.deltaTime;
+                transform.Rotate(0, rotationAngle, 0);
+            }   
         }
     }
 
