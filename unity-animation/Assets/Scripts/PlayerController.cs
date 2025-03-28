@@ -48,18 +48,15 @@ public class PlayerController : MonoBehaviour
     {
         if (_playerHasPermissionToMove)
         {
-            float horizontalInput = Input.GetAxis("Horizontal"); 
             float verticalInput = Input.GetAxisRaw("Vertical"); 
 
             Vector3 movementOnZ = transform.forward * verticalInput;
-            Vector3 movementOnX = transform.right * horizontalInput;
 
             // Use the player's facing direction for movement
-            Vector3 moveDirection = movementOnZ + movementOnX;
+            Vector3 moveDirection = movementOnZ;
             moveDirection.Normalize();
 
             _rigidbody.velocity = new Vector3(moveDirection.x * _moveSpeed, _rigidbody.velocity.y, moveDirection.z * _moveSpeed);
-            // _rigidbody.velocity = new Vector3(horizontalInput * _moveSpeed, _rigidbody.velocity.y, verticalInput * _moveSpeed);
         }
         else 
         {
