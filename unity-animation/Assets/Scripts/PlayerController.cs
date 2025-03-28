@@ -144,9 +144,7 @@ public class PlayerController : MonoBehaviour
                 _playerHasPermissionToMove = false;
             }
 
-            // Reset animation states //! Create a method for that
-            _playerIsRunning = false;
-            _playerIsJumping = false;
+            ResetAnimationsStates();
         }
     }
 
@@ -155,11 +153,15 @@ public class PlayerController : MonoBehaviour
         transform.position = _resetPosition;
     }
 
-    // Method to reset player state if necessary
-    public void ResetPlayerState()
+    // Methods to reset player state 
+    private void ResetPlayerState()
     {
         _playerHasLandedOnGround = false;
         _playerHasPermissionToMove = false;
+    }
+
+    private void ResetAnimationsStates()
+    {
         _playerIsRunning = false;
         _playerIsJumping = false;
     }
