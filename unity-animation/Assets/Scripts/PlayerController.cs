@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_animator != null)
         {
-            _animator.SetBool("isRunning", _playerIsRunning); //! Remember to check jumping state
+            _animator.SetBool("isRunning", _playerIsRunning && !_playerIsJumping); 
             _animator.SetBool("isJumping", _playerIsJumping);
         }
         else
