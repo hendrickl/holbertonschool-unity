@@ -164,7 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
-  _jumpForce: 9
+  _rotationSpeed: 280
+  _jumpForce: 8
   _groundContactPoint: {fileID: 1408051492016878343}
   _fallThreshold: -20
   _startPosition: {x: 0, y: 1.25, z: 3.5}
@@ -272,6 +273,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ty
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 59f84bcb67c1f2045ae8bb6a2ca79a27, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e098c98e9a7f53c468223724878ec660, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59f84bcb67c1f2045ae8bb6a2ca79a27, type: 3}
 --- !u!4 &1493775962301372666 stripped
