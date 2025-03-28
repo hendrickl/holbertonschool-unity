@@ -165,14 +165,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _rotationSpeed: 280
-  _jumpForce: 8
-  _groundContactPoint: {fileID: 1408051492016878343}
+  _jumpForce: 8.5
   _fallThreshold: -20
+  _groundContactPoint: {fileID: 1408051492016878343}
   _startPosition: {x: 0, y: 1.25, z: 3.5}
   _resetPosition: {x: 0, y: 3, z: 3.5}
   _ground:
     serializedVersion: 2
     m_Bits: 64
+  _animator: {fileID: 4781373125088526976}
 --- !u!114 &926642832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,5 +283,10 @@ PrefabInstance:
 --- !u!4 &1493775962301372666 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 59f84bcb67c1f2045ae8bb6a2ca79a27, type: 3}
+  m_PrefabInstance: {fileID: 1382688853441183505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4781373125088526976 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 59f84bcb67c1f2045ae8bb6a2ca79a27, type: 3}
   m_PrefabInstance: {fileID: 1382688853441183505}
   m_PrefabAsset: {fileID: 0}

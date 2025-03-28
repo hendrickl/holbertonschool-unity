@@ -6,22 +6,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _rotationSpeed = 300f;
     [SerializeField] private float _jumpForce = 10f;
-    [SerializeField] private Transform _groundContactPoint;
     [SerializeField] private float _fallThreshold = -20f;
+    [SerializeField] private Transform _groundContactPoint;
     [SerializeField] private Vector3 _startPosition; 
     [SerializeField] private Vector3 _resetPosition; 
     [SerializeField] private LayerMask _ground;
 
+    [SerializeField] private Animator _animator;
     private Rigidbody _rigidbody;
     private bool _playerHasPermissionToMove;
     private bool _playerHasLandedOnGround;
+    private bool _playerIsRunning;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>(); 
+        // _animator = GetComponent<Animator>();
+
         transform.position = _startPosition;
+        
         _playerHasPermissionToMove = false;
         _playerHasLandedOnGround = false;
+        _playerIsRunning = false;
     }
 
     private void Update()
@@ -41,6 +47,7 @@ public class PlayerController : MonoBehaviour
         RotatePlayer();
         MovePlayer();
         CheckFall();
+        UpdateRunningAnimation();
     }
 
     // Move the player based on WASD and arrows input
@@ -50,17 +57,19 @@ public class PlayerController : MonoBehaviour
         {
             float verticalInput = Input.GetAxisRaw("Vertical"); 
 
-            Vector3 movementOnZ = transform.forward * verticalInput;
-
             // Use the player's facing direction for movement
+            Vector3 movementOnZ = transform.forward * verticalInput;
             Vector3 moveDirection = movementOnZ;
             moveDirection.Normalize();
 
             _rigidbody.velocity = new Vector3(moveDirection.x * _moveSpeed, _rigidbody.velocity.y, moveDirection.z * _moveSpeed);
+            
+            _playerIsRunning = true;
         }
         else 
         {
             _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0); // The player can fall under the effect of gravity but cannot move horizontally
+            _playerIsRunning = false;
         }
     }
 
@@ -92,6 +101,18 @@ public class PlayerController : MonoBehaviour
         bool isGrounded = Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
         // Debug.Log($"PlayerController - IsGrounded : {isGrounded}");
         return isGrounded;
+    }
+
+    private void UpdateRunningAnimation()
+    {
+        if (_animator != null)
+        {
+            _animator.SetBool("isRunning", _playerIsRunning);
+        }
+        else
+        {
+            Debug.Log($"PlayerController: animator not assigned");
+        }
     }
 
     private void CheckFall()
