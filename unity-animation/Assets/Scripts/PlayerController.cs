@@ -117,10 +117,13 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateAnimations()
     {
+        bool isFalling = !PlayerIsGrounded() && _rigidbody.velocity.y < 0; // Check if the player is currently falling 
+
         if (_animator != null)
         {
-            _animator.SetBool("isRunning", _playerIsRunning && !_playerIsJumping); 
-            _animator.SetBool("isJumping", _playerIsJumping);
+            _animator.SetBool("isRunning", _playerIsRunning && !_playerIsJumping && !isFalling); 
+            _animator.SetBool("isJumping", _playerIsJumping && !isFalling);
+            _animator.SetBool("isFalling", isFalling);        
         }
         else
         {
@@ -148,12 +151,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Methods to reset player state 
     private void ResetPlayerPosition()
     {
         transform.position = _resetPosition;
     }
 
-    // Methods to reset player state 
     private void ResetPlayerState()
     {
         _playerHasLandedOnGround = false;
