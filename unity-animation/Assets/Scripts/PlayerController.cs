@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
         _playerIsRunning = false;
         _playerIsJumping = false;
         _playerWasGroundedLastFrame = false; 
-        _playerIsFalling = false;
+        _playerIsFalling = false; //!PlayerIsGrounded() && _rigidbody.velocity.y < -1
 
         Debug.Log($"PlayerController: 1 - Player is falling = {_playerIsFalling}");
     }
@@ -63,6 +63,8 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         CheckFall();
         UpdateAnimations();
+
+        Debug.Log($"PlayerController: Player is falling = {_playerIsFalling = !PlayerIsGrounded() && _rigidbody.velocity.y < -1}");
     }
 
     // Move the player based on WASD and arrows input
@@ -136,8 +138,14 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y < _fallThreshold)
         {
+            Debug.Log($"PlayerController: 2 - Player is falling = {_playerIsFalling}");
+
             _playerIsFalling = true;
-            
+            _animator.Play("Falling");
+            // _animator.Play("Falling Flat Impact");
+
+            Debug.Log($"PlayerController: 3 - Player is falling = {_playerIsFalling}");
+
             ResetPlayerPosition();
 
             _playerIsFalling = false;
@@ -153,6 +161,8 @@ public class PlayerController : MonoBehaviour
             }
 
             ResetAnimationsStates();
+
+            Debug.Log($"PlayerController: 4 - Player is falling = {_playerIsFalling}");
         }
     }
 
@@ -166,5 +176,6 @@ public class PlayerController : MonoBehaviour
     {
         _playerIsRunning = false;
         _playerIsJumping = false;
+        // _playerIsFalling = false;
     }
 }
