@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool _playerIsRunning;
     private bool _playerIsJumping;
     private bool _playerWasGroundedLastFrame; // Detect when the player lands
+    private bool _playerIsFalling;
 
     private void Start()
     {
@@ -31,6 +32,9 @@ public class PlayerController : MonoBehaviour
         _playerIsRunning = false;
         _playerIsJumping = false;
         _playerWasGroundedLastFrame = false; 
+        _playerIsFalling = false;
+
+        Debug.Log($"PlayerController: 1 - Player is falling = {_playerIsFalling}");
     }
 
     private void Update()
@@ -111,19 +115,16 @@ public class PlayerController : MonoBehaviour
     private bool PlayerIsGrounded()
     {
         bool playerIsGrounded = Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
-        // Debug.Log($"PlayerController - PlayerPlayerIsGrounded : {PlayerPlayerIsGrounded}");
         return playerIsGrounded;
     }
 
     private void UpdateAnimations()
     {
-        bool isFalling = !PlayerIsGrounded() && _rigidbody.velocity.y < 0; // Check if the player is currently falling 
-
         if (_animator != null)
         {
-            _animator.SetBool("isRunning", _playerIsRunning && !_playerIsJumping && !isFalling); 
-            _animator.SetBool("isJumping", _playerIsJumping && !isFalling);
-            _animator.SetBool("isFalling", isFalling);        
+            _animator.SetBool("isRunning", _playerIsRunning && !_playerIsJumping && !_playerIsFalling); 
+            _animator.SetBool("isJumping", _playerIsJumping && !_playerIsFalling);
+            _animator.SetBool("isFalling", _playerIsFalling);      
         }
         else
         {
@@ -135,7 +136,11 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y < _fallThreshold)
         {
+            _playerIsFalling = true;
+            
             ResetPlayerPosition();
+
+            _playerIsFalling = false;
 
             // If the player falls the control state is reset
             if (_playerHasLandedOnGround) 
@@ -151,16 +156,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Methods to reset player state 
+    // Methods to reset 
     private void ResetPlayerPosition()
     {
         transform.position = _resetPosition;
-    }
-
-    private void ResetPlayerState()
-    {
-        _playerHasLandedOnGround = false;
-        _playerHasPermissionToMove = false;
     }
 
     private void ResetAnimationsStates()
