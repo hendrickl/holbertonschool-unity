@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private bool _playerIsJumping;
     private bool _playerWasGroundedLastFrame; // Detect when the player lands
     private bool _playerIsFalling;
+    private bool _playerIsFallingFlat;
 
     private void Start()
     {
@@ -29,25 +30,29 @@ public class PlayerController : MonoBehaviour
         
         _playerHasPermissionToMove = false;
         _playerHasLandedOnGround = false;
+        _playerWasGroundedLastFrame = false; 
+
         _playerIsRunning = false;
         _playerIsJumping = false;
-        _playerWasGroundedLastFrame = false; 
-        _playerIsFalling = false; //!PlayerIsGrounded() && _rigidbody.velocity.y < -1
 
-        Debug.Log($"PlayerController: START - Player is falling = {_playerIsFalling}");
+        Debug.Log($"PlayerController: START - Player is falling = {PlayerIsFalling()}");
+        Debug.Log($"PlayerController: START - Player is falling flat = {PlayerIsFallingFlat()}");
+
+        _playerIsFalling = false;
+        _playerIsFallingFlat = false;
     }
 
     private void Update()
     {
         // Check if the player touched the ground for the first time
-        if (!_playerHasLandedOnGround && PlayerIsGrounded())
+        if (PlayerIsGrounded() && !_playerWasGroundedLastFrame)
         {
             _playerHasLandedOnGround = true;
             _playerHasPermissionToMove = true;
         }
 
         // Detect landing from jump
-        if (_playerIsJumping && !_playerWasGroundedLastFrame && PlayerIsGrounded())
+        if (PlayerIsJumping() && !_playerWasGroundedLastFrame && PlayerIsGrounded())
         {
             _playerIsJumping = false;
         }
@@ -63,9 +68,6 @@ public class PlayerController : MonoBehaviour
         MovePlayer();
         CheckFall();
         UpdateAnimations();
-
-        // Debug.Log($"PlayerController: Player is falling = {_playerIsFalling = !PlayerIsGrounded() && _rigidbody.velocity.y < -1}");
-        Debug.Log($"PlayerController: UPDATE - Player is falling = {_playerIsFalling = _rigidbody.velocity.y < -1}");
     }
 
     // Move the player based on WASD and arrows input
@@ -109,52 +111,66 @@ public class PlayerController : MonoBehaviour
     // Make jump the player when the space button is pressed
     private void Jump()
     {
-        _playerIsJumping = true;
+        PlayerIsJumping();
         _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _jumpForce, _rigidbody.velocity.z);
-        Debug.Log($"Jump is called");
-    }
-
-    // Check if the player is grounded
-    private bool PlayerIsGrounded()
-    {
-        bool playerIsGrounded = Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
-        return playerIsGrounded;
-    }
-
-    private void UpdateAnimations()
-    {
-        if (_animator != null)
-        {
-            _animator.SetBool("isRunning", _playerIsRunning && !_playerIsJumping && !_playerIsFalling); 
-            _animator.SetBool("isJumping", _playerIsJumping); 
-            _animator.SetBool("isFalling", _playerIsFalling);      
-        }
-        else
-        {
-            Debug.Log($"PlayerController: animator not assigned");
-        }
     }
 
     private void CheckFall()
     {
         if (transform.position.y < _fallThreshold)
         {
-            _playerIsFalling = true;
+            PlayerIsFalling();
+
+            //! Coroutines pour déclencher l'animation Falling Flat
+
+            Debug.Log($"PlayerController: CHECKFALL 1 - Player is falling = {PlayerIsFalling()}");
+            Debug.Log($"PlayerController: CHECKFALL 1 - Player is falling flat = {PlayerIsFallingFlat()}");
 
             ResetPlayerPosition();
             ResetAnimationsState();
 
-            // If the player falls the control state is reset
-            if (_playerHasLandedOnGround) 
-            {
-                _playerHasPermissionToMove = true; // Keep controls enabled after fall if already enabled previously 
-            }
-            else
-            {
-                _playerHasPermissionToMove = false;
-            }
+            Debug.Log($"PlayerController: CHECKFALL 2 - Player is falling = {PlayerIsFalling()}");
+            Debug.Log($"PlayerController: CHECKFALL 2 - Player is falling flat = {PlayerIsFallingFlat()}");
+        }
+    }
 
-            Debug.Log($"PlayerController: CHECKFALL - Player is falling = {_rigidbody.velocity.y < -1}");
+    // Methods to check the player's state
+    private bool PlayerIsGrounded()
+    {
+        bool playerIsGrounded = Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
+        return playerIsGrounded;
+    }
+
+    private bool PlayerIsJumping()
+    {
+        _playerIsJumping = _rigidbody.velocity.y > 1f;
+        return _playerIsJumping;
+    }
+
+    private bool PlayerIsFalling()
+    {
+        _playerIsFalling = !PlayerIsGrounded() && _rigidbody.velocity.y < -1f;
+        return _playerIsFalling;    
+    }
+
+    private bool PlayerIsFallingFlat()
+    {
+        _playerIsFallingFlat = PlayerIsGrounded() && _playerWasGroundedLastFrame && _rigidbody.velocity.y < 0.5f && _rigidbody.velocity.y > -0.5f;
+        return _playerIsFallingFlat;
+    }
+
+    // Animation management
+    private void UpdateAnimations()
+    {
+        if (_animator != null)
+        {
+            _animator.SetBool("isRunning", _playerIsRunning && !PlayerIsJumping() && ! PlayerIsFalling()); 
+            _animator.SetBool("isJumping", PlayerIsJumping()); 
+            _animator.SetBool("isFalling", PlayerIsFalling());      
+        }
+        else
+        {
+            Debug.Log($"PlayerController: animator not assigned");
         }
     }
 
@@ -168,6 +184,6 @@ public class PlayerController : MonoBehaviour
     {
         _playerIsRunning = false;
         _playerIsJumping = false;
-        _playerIsFalling = false;
+        // _playerIsFalling = false;
     }
 }
