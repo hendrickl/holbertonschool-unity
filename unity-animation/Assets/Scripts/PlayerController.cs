@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 // This script manages the behaviour of the player
 public class PlayerController : MonoBehaviour
@@ -20,7 +21,8 @@ public class PlayerController : MonoBehaviour
     private bool _playerIsJumping;
     private bool _playerWasGroundedLastFrame; // Detect when the player lands
     private bool _playerIsFalling;
-    private bool _playerIsFallingFlat;
+    // private bool _playerIsFallingFlat;
+    private bool _shouldTriggerFallingFlat; // Flag to track if we should trigger the animation
 
     private void Start()
     {
@@ -34,12 +36,13 @@ public class PlayerController : MonoBehaviour
 
         _playerIsRunning = false;
         _playerIsJumping = false;
+        _shouldTriggerFallingFlat = false;
 
         Debug.Log($"PlayerController: START - Player is falling = {PlayerIsFalling()}");
         Debug.Log($"PlayerController: START - Player is falling flat = {PlayerIsFallingFlat()}");
 
         _playerIsFalling = false;
-        _playerIsFallingFlat = false;
+        // _playerIsFallingFlat = false;
     }
 
     private void Update()
@@ -49,6 +52,13 @@ public class PlayerController : MonoBehaviour
         {
             _playerHasLandedOnGround = true;
             _playerHasPermissionToMove = true;
+            
+            // If player was falling and now is grounded, trigger falling flat
+            if (_playerIsFalling)
+            {
+                _shouldTriggerFallingFlat = true;
+                StartCoroutine(TriggerFallingFlatAnimation());
+            }
         }
 
         // Detect landing from jump
@@ -84,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
             _rigidbody.velocity = new Vector3(moveDirection.x * _moveSpeed, _rigidbody.velocity.y, moveDirection.z * _moveSpeed);
             
-            _playerIsRunning = true;
+            _playerIsRunning = true; 
         }
         else 
         {
@@ -108,10 +118,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Make jump the player when the space button is pressed
+    // Make jump the player
     private void Jump()
     {
-        PlayerIsJumping();
+        _playerIsJumping = true;
         _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _jumpForce, _rigidbody.velocity.z);
     }
 
@@ -119,18 +129,13 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.position.y < _fallThreshold)
         {
-            PlayerIsFalling();
-
-            //! Coroutines pour déclencher l'animation Falling Flat
-
-            Debug.Log($"PlayerController: CHECKFALL 1 - Player is falling = {PlayerIsFalling()}");
-            Debug.Log($"PlayerController: CHECKFALL 1 - Player is falling flat = {PlayerIsFallingFlat()}");
-
+            // Set the flag to trigger falling flat animation
+            _shouldTriggerFallingFlat = true;
+            
             ResetPlayerPosition();
-            ResetAnimationsState();
-
-            Debug.Log($"PlayerController: CHECKFALL 2 - Player is falling = {PlayerIsFalling()}");
-            Debug.Log($"PlayerController: CHECKFALL 2 - Player is falling flat = {PlayerIsFallingFlat()}");
+            
+            Debug.Log($"PlayerController: CHECKFALL - Player fell below threshold = {transform.position.y}");
+            StartCoroutine(TriggerFallingFlatAnimation());
         }
     }
 
@@ -143,7 +148,14 @@ public class PlayerController : MonoBehaviour
 
     private bool PlayerIsJumping()
     {
-        _playerIsJumping = _rigidbody.velocity.y > 1f;
+        if (!_playerIsJumping)
+        {
+            _playerIsJumping = _rigidbody.velocity.y > 1f;
+        }
+        else if (PlayerIsGrounded() && _rigidbody.velocity.y < 0.1f)
+        {
+            _playerIsJumping = false;
+        }
         return _playerIsJumping;
     }
 
@@ -155,8 +167,8 @@ public class PlayerController : MonoBehaviour
 
     private bool PlayerIsFallingFlat()
     {
-        _playerIsFallingFlat = PlayerIsGrounded() && _playerWasGroundedLastFrame && _rigidbody.velocity.y < 0.5f && _rigidbody.velocity.y > -0.5f;
-        return _playerIsFallingFlat;
+        // Return the flag that indicates we should play the falling flat animation
+        return _shouldTriggerFallingFlat;
     }
 
     // Animation management
@@ -164,9 +176,10 @@ public class PlayerController : MonoBehaviour
     {
         if (_animator != null)
         {
-            _animator.SetBool("isRunning", _playerIsRunning && !PlayerIsJumping() && ! PlayerIsFalling()); 
+            _animator.SetBool("isRunning", _playerIsRunning && PlayerIsGrounded() && !PlayerIsJumping()); 
             _animator.SetBool("isJumping", PlayerIsJumping()); 
-            _animator.SetBool("isFalling", PlayerIsFalling());      
+            _animator.SetBool("isFalling", PlayerIsFalling()); 
+            _animator.SetBool("isFallingFlat", PlayerIsFallingFlat());
         }
         else
         {
@@ -184,6 +197,32 @@ public class PlayerController : MonoBehaviour
     {
         _playerIsRunning = false;
         _playerIsJumping = false;
-        // _playerIsFalling = false;
+        _playerIsFalling = false;
+        _shouldTriggerFallingFlat = false;
+    }
+
+    // Activate the Falling Flat animation
+    private IEnumerator TriggerFallingFlatAnimation()
+    {
+        if (_animator != null)
+        {
+            Debug.Log("PlayerController: Triggering falling flat animation");
+            
+            _animator.SetBool("isFallingFlat", true);
+            
+            yield return new WaitForSeconds(2.0f); // Wait for the animation's duration
+            
+            // Reset the animation flag and state
+            _shouldTriggerFallingFlat = false;
+            _animator.SetBool("isFallingFlat", false);
+            
+            // Reset other animation states after the animation completes
+            ResetAnimationsState();
+        }
+        else
+        {
+            Debug.Log("PlayerController: Animator not assigned");
+            yield return null;
+        }
     }
 }
