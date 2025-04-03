@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
     // Move the player based on WASD and arrows input
     private void MovePlayer()
     {
-        if (_playerHasPermissionToMove)
+        if (_playerHasPermissionToMove && !_playerIsInGettingUpSequence)
         {
             float verticalInput = Input.GetAxisRaw("Vertical"); 
 
