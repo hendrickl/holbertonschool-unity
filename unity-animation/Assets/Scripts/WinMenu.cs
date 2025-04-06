@@ -36,15 +36,15 @@ public class WinMenu : MonoBehaviour
 
     public void Next()
     {
-        int l_currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 
-        if (l_currentSceneIndex >= LAST_LEVEL_INDEX)
+        if (currentSceneIndex >= LAST_LEVEL_INDEX)
         {
             SceneManager.LoadScene(MAIN_MENU_INDEX);
         }
         else
         {
-            SceneManager.LoadScene(l_currentSceneIndex + 1);
+            SceneManager.LoadScene(currentSceneIndex + 1);
         }
     }
 }
