@@ -2145,7 +2145,7 @@ PrefabInstance:
       objectReference: {fileID: 210209575}
     - target: {fileID: 449939373093516696, guid: 0919271345dbb42408ee4973673ed536, type: 3}
       propertyPath: _animationTransitionTime
-      value: 0.3
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 449939373093516701, guid: 0919271345dbb42408ee4973673ed536, type: 3}
       propertyPath: m_Name

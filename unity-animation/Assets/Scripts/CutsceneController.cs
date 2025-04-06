@@ -21,6 +21,8 @@ public class CutsceneController : MonoBehaviour
 
     private void Start() 
     {
+        gameObject.SetActive(true);
+
         _currentScene = SceneManager.GetActiveScene().name;
         Debug.Log($"CutsceneController: Current scene is {_currentScene}");
 
@@ -53,7 +55,7 @@ public class CutsceneController : MonoBehaviour
         
         if (_animator != null)
         {
-            _animator.Play(_currentLevelAnimationState);
+            _animator.Play(_currentLevelAnimationState, 0);
             Debug.Log($"CutsceneController: Triggered animation state {_currentLevelAnimationState}");
 
             StartCoroutine(WaitForAnimationEnd());
