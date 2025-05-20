@@ -26,9 +26,9 @@ public class MainMenu : MonoBehaviour
             _optionsButton.onClick.AddListener(() => LevelSelect(1));
             
         if (_exitButton != null)
-            _exitButton.onClick.AddListener(() => Application.Quit());
+            _exitButton.onClick.AddListener(() => Debug.Log($"Exited"));
 
-            // _exitButton.onClick.AddListener(() => Debug.Log($"Exited"));
+        // _exitButton.onClick.AddListener(() => Application.Quit());
     }
 
     public void LevelSelect(int level)
