@@ -8,17 +8,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _jumpForce = 10f;
     [SerializeField] private float _fallThreshold = -20f;
     [SerializeField] private Transform _groundContactPoint;
-    [SerializeField] private Vector3 _startPosition; 
-    [SerializeField] private Vector3 _resetPosition; 
-    [SerializeField] private Vector3 _resetRotation; 
+    [SerializeField] private Vector3 _startPosition;
+    [SerializeField] private Vector3 _resetPosition;
+    [SerializeField] private Vector3 _resetRotation;
     [SerializeField] private LayerMask _ground;
     [SerializeField] private Animator _animator;
+
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _grassFootsteps;
+    [SerializeField] private AudioClip _rockFootsteps;
+    [SerializeField] private string _groundTagGrass = "Grass";
+    [SerializeField] private string _groundTagRock = "Rock";
+    [SerializeField] private LayerMask _terrainLayerMask;
 
     private Rigidbody _rigidbody;
 
     private bool _playerHasPermissionToMove;
     private bool _playerHasLandedOnGround;
-    private bool _playerWasGroundedLastFrame; 
+    private bool _playerWasGroundedLastFrame;
 
     private bool _playerIsRunning;
     private bool _playerIsJumping;
@@ -30,13 +37,13 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>(); 
+        _rigidbody = GetComponent<Rigidbody>();
 
         transform.position = _startPosition;
-        
+
         _playerHasPermissionToMove = false;
         _playerHasLandedOnGround = false;
-        _playerWasGroundedLastFrame = false; 
+        _playerWasGroundedLastFrame = false;
 
         _playerIsRunning = false;
         _playerIsJumping = false;
@@ -58,13 +65,13 @@ public class PlayerController : MonoBehaviour
         if (PlayerIsGrounded() && !_playerWasGroundedLastFrame)
         {
             _playerHasLandedOnGround = true;
-            
+
             // Only give permission to move if we're not in the getting up & flatting flat sequences
             if (!_playerIsInGettingUpSequence && !_playerIsInFlattingFlatSequence)
             {
                 _playerHasPermissionToMove = true;
             }
-            
+
             // Trigger falling flat
             if (PlayerIsFalling() && !_playerIsInGettingUpSequence)
             {
@@ -97,7 +104,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_playerHasPermissionToMove && !_playerIsInGettingUpSequence && !_playerIsInFlattingFlatSequence)
         {
-            float verticalInput = Input.GetAxisRaw("Vertical"); 
+            float verticalInput = Input.GetAxisRaw("Vertical");
 
             // Only move and set running if there's actual input
             if (verticalInput != 0)
@@ -108,7 +115,7 @@ public class PlayerController : MonoBehaviour
                 moveDirection.Normalize();
 
                 _rigidbody.velocity = new Vector3(moveDirection.x * _moveSpeed, _rigidbody.velocity.y, moveDirection.z * _moveSpeed);
-                
+
                 _playerIsRunning = true;
             }
             else
@@ -118,7 +125,7 @@ public class PlayerController : MonoBehaviour
                 _playerIsRunning = false;
             }
         }
-        else 
+        else
         {
             _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0); // The player can fall under the effect of gravity but cannot move horizontally
             _playerIsRunning = false;
@@ -136,7 +143,7 @@ public class PlayerController : MonoBehaviour
             {
                 float rotationAngle = horizontalInput * _rotationSpeed * Time.deltaTime;
                 transform.Rotate(0, rotationAngle, 0);
-            }   
+            }
         }
     }
 
@@ -155,7 +162,7 @@ public class PlayerController : MonoBehaviour
 
             // Set the flag to trigger falling flat animation
             _shouldTriggerFallingFlatAnimation = true;
-            
+
             ResetPlayerPosition();
             StartCoroutine(TriggerFallingFlatAnimation());
         }
@@ -178,7 +185,7 @@ public class PlayerController : MonoBehaviour
     private bool PlayerIsFalling()
     {
         _playerIsFalling = !PlayerIsGrounded() && _rigidbody.velocity.y < -1f;
-        return _playerIsFalling;    
+        return _playerIsFalling;
     }
 
     private bool PlayerIsFallingFlat()
@@ -192,14 +199,32 @@ public class PlayerController : MonoBehaviour
     {
         if (_animator != null)
         {
-            _animator.SetBool("isRunning", _playerIsRunning && PlayerIsGrounded() && !PlayerIsJumping()); 
-            _animator.SetBool("isJumping", PlayerIsJumping()); 
-            _animator.SetBool("isFalling", PlayerIsFalling()); 
+            _animator.SetBool("isRunning", _playerIsRunning && PlayerIsGrounded() && !PlayerIsJumping());
+            _animator.SetBool("isJumping", PlayerIsJumping());
+            _animator.SetBool("isFalling", PlayerIsFalling());
             _animator.SetBool("isFallingFlat", PlayerIsFallingFlat());
         }
         else
         {
             Debug.Log($"PlayerController: animator not assigned");
+        }
+
+        if (_playerIsRunning && PlayerIsGrounded() && !PlayerIsJumping())
+        {
+            string groundTag = DetectGroundTag();
+            AudioClip selectedClip = null;
+
+            if (groundTag == _groundTagGrass)
+            {
+                selectedClip = _grassFootsteps;
+            }
+            else if (groundTag == _groundTagRock)
+            {
+                selectedClip = _rockFootsteps;
+            }
+
+            _audioSource.clip = selectedClip;
+            _audioSource.Play();
         }
     }
 
@@ -230,9 +255,9 @@ public class PlayerController : MonoBehaviour
             _playerIsInGettingUpSequence = false;
             _playerIsInFlattingFlatSequence = false;
             _playerHasPermissionToMove = false;
-            
-            Debug.Log("PlayerController/TFFA - 1: Start the Falling Flat animation");
-            
+
+            // Debug.Log("PlayerController/TFFA - 1: Start the Falling Flat animation");
+
             // Step 1: Start the Falling Flat animation
             _animator.SetBool("isFallingFlat", true);
             _playerIsInFlattingFlatSequence = true;
@@ -241,28 +266,28 @@ public class PlayerController : MonoBehaviour
 
             // Wait for the Falling Flat Impact animation
             yield return new WaitForSeconds(2.0f);
-            
-            Debug.Log("PlayerControlle/TFFA - 2: Falling flat animation complete -> Transitioning to Getting Up");
-            
+
+            // Debug.Log("PlayerControlle/TFFA - 2: Falling flat animation complete -> Transitioning to Getting Up");
+
             // Step 2: Transition to Getting Up happens automatically in the Animator, wait for its duration
             _playerIsInFlattingFlatSequence = false;
             _playerIsInGettingUpSequence = true;
             yield return new WaitForSeconds(6f); // Adjust based on the Getting Up animation duration
-            
-            Debug.Log("PlayerControlle/TFFA - 3A: Getting Up animation should be complete -> Transitioning to Idle");
-            
+
+            // Debug.Log("PlayerControlle/TFFA - 3A: Getting Up animation should be complete -> Transitioning to Idle");
+
             // Step 3: Transitioning to Idle
             _animator.SetBool("isGettingUpComplete", true); //Set the flag to transition to Idle
-            
-            Debug.Log("PlayerControlle/TFFA - 3B: Transitioning to Idle complete");
-            
+
+            // Debug.Log("PlayerControlle/TFFA - 3B: Transitioning to Idle complete");
+
             // Reset animation flags
             _shouldTriggerFallingFlatAnimation = false;
             _animator.SetBool("isFallingFlat", false);
-            
+
             // Reset other animation states
-            ResetAnimationsState(); 
-            
+            ResetAnimationsState();
+
             // End the getting up sequence and allow player to move again
             _playerIsInGettingUpSequence = false;
             _playerHasPermissionToMove = true;
@@ -272,5 +297,18 @@ public class PlayerController : MonoBehaviour
             Debug.Log("PlayerController: Animator not assigned");
             yield return null;
         }
+    }
+
+    // Method to detect de kind of ground
+    private string DetectGroundTag()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(_groundContactPoint.position, Vector3.down, out hit, 1f, _terrainLayerMask))
+        {
+            Debug.Log($"PlayerController - Ground tag detected is {hit.collider.tag}");
+            return hit.collider.tag;
+        }
+        return "";
     }
 }
