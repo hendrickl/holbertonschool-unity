@@ -130,6 +130,7 @@ public class PlayerController : MonoBehaviour
             _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0); // The player can fall under the effect of gravity but cannot move horizontally
             _playerIsRunning = false;
         }
+        PlayFootstepsSFX();
     }
 
     // Rotate player gradually based on horizontal input 
@@ -208,25 +209,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log($"PlayerController: animator not assigned");
         }
-
-        if (_playerIsRunning && PlayerIsGrounded() && !PlayerIsJumping())
-        {
-            string groundTag = DetectGroundTag();
-            AudioClip selectedClip = null;
-
-            if (groundTag == _groundTagGrass)
-            {
-                selectedClip = _grassFootsteps;
-            }
-            else if (groundTag == _groundTagRock)
-            {
-                selectedClip = _rockFootsteps;
-            }
-
-            _audioSource.clip = selectedClip;
-            _audioSource.Play();
-        }
-    }
+    }   
 
     // Methods to reset 
     private void ResetPlayerPosition()
@@ -299,7 +282,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Method to detect de kind of ground
+    // Method to detect the tag of the 2 differents ground
     private string DetectGroundTag()
     {
         RaycastHit hit;
@@ -310,5 +293,43 @@ public class PlayerController : MonoBehaviour
             return hit.collider.tag;
         }
         return "";
+    }
+
+    // Method to trigger footstep sound effects based on floor type
+    private void PlayFootstepsSFX()
+    {
+        if (_playerIsRunning && PlayerIsGrounded() && !PlayerIsJumping())
+        {
+            string groundTag = DetectGroundTag();
+            AudioClip selectedClip = null;
+
+            if (groundTag == _groundTagGrass)
+            {
+                selectedClip = _grassFootsteps;
+            }
+            else if (groundTag == _groundTagRock)
+            {
+                selectedClip = _rockFootsteps;
+            }
+
+            if (selectedClip != null)
+            {
+                if (_audioSource.clip != selectedClip)
+                {
+                    _audioSource.clip = selectedClip;
+                    _audioSource.Play();
+                }
+                else if (!_audioSource.isPlaying)
+                {
+                    // If this is already the correct clip but it is not yet played
+                    _audioSource.Play();
+                }
+            }
+        }
+        else
+        {
+            if (_audioSource.isPlaying)
+                _audioSource.Stop();
+        }
     }
 }
