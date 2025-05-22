@@ -14,9 +14,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask _ground;
     [SerializeField] private Animator _animator;
 
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _footstepsAudioSource;
+    [SerializeField] private AudioSource _landingAudioSource;
     [SerializeField] private AudioClip _grassFootsteps;
     [SerializeField] private AudioClip _rockFootsteps;
+    [SerializeField] private AudioClip _footstepsLandingGrass;
+    [SerializeField] private AudioClip _footstepsLandingRock;
     [SerializeField] private string _groundTagGrass = "Grass";
     [SerializeField] private string _groundTagRock = "Rock";
     [SerializeField] private LayerMask _terrainLayerMask;
@@ -65,6 +68,7 @@ public class PlayerController : MonoBehaviour
         if (PlayerIsGrounded() && !_playerWasGroundedLastFrame)
         {
             _playerHasLandedOnGround = true;
+            PlayLandingSFX();
 
             // Only give permission to move if we're not in the getting up & flatting flat sequences
             if (!_playerIsInGettingUpSequence && !_playerIsInFlattingFlatSequence)
@@ -209,7 +213,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log($"PlayerController: animator not assigned");
         }
-    }   
+    }
 
     // Methods to reset 
     private void ResetPlayerPosition()
@@ -301,37 +305,55 @@ public class PlayerController : MonoBehaviour
         if (_playerIsRunning && PlayerIsGrounded() && !PlayerIsJumping())
         {
             string groundTag = DetectGroundTag();
-            AudioClip selectedClip = null;
+            AudioClip footstepsClip = null;
 
             if (groundTag == _groundTagGrass)
             {
-                selectedClip = _grassFootsteps;
+                footstepsClip = _grassFootsteps;
             }
             else if (groundTag == _groundTagRock)
             {
-                selectedClip = _rockFootsteps;
+                footstepsClip = _rockFootsteps;
             }
 
-            if (selectedClip != null)
+            if (footstepsClip != null)
             {
-                if (_audioSource.clip != selectedClip)
+                if (_footstepsAudioSource.clip != footstepsClip)
                 {
-                    _audioSource.clip = selectedClip;
-                    _audioSource.Play();
+                    _footstepsAudioSource.clip = footstepsClip;
+                    _footstepsAudioSource.Play();
                 }
-                else if (!_audioSource.isPlaying)
+                else if (!_footstepsAudioSource.isPlaying)
                 {
                     // If this is already the correct clip but it is not yet played
-                    _audioSource.Play();
+                    _footstepsAudioSource.Play();
                 }
             }
         }
         else
         {
-            if (_audioSource.isPlaying)
+            if (_footstepsAudioSource.isPlaying)
             {
-                _audioSource.Stop();
+                _footstepsAudioSource.Stop();
             }
         }
+    }
+
+    private void PlayLandingSFX()
+    {
+        string groundTag = DetectGroundTag();
+        AudioClip landingClip = null;
+
+        if (groundTag == _groundTagGrass)
+        {
+            landingClip = _footstepsLandingGrass;
+        }
+        else if (groundTag == _groundTagRock)
+        {
+            landingClip = _footstepsLandingRock;
+        }
+
+        _landingAudioSource.clip = landingClip;
+        _landingAudioSource.Play();
     }
 }
