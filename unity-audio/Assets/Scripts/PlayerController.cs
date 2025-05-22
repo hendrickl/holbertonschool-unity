@@ -56,8 +56,8 @@ public class PlayerController : MonoBehaviour
         _playerIsInGettingUpSequence = false;
         _playerIsInFlattingFlatSequence = false;
 
-        Debug.Log($"PlayerController: START - Player is falling = {PlayerIsFalling()}");
-        Debug.Log($"PlayerController: START - Player is falling flat = {PlayerIsFallingFlat()}");
+        Debug.Log($"PlayerController/START - Player is falling = {PlayerIsFalling()}");
+        Debug.Log($"PlayerController/START - Player is falling flat = {PlayerIsFallingFlat()}");
 
         _animator.SetBool("isGettingUpComplete", true);
     }
@@ -339,6 +339,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Method to trigger landing sound effects based on floor type
     private void PlayLandingSFX()
     {
         string groundTag = DetectGroundTag();
@@ -353,7 +354,11 @@ public class PlayerController : MonoBehaviour
             landingClip = _footstepsLandingRock;
         }
 
-        _landingAudioSource.clip = landingClip;
-        _landingAudioSource.Play();
+        if (landingClip != null)
+        {
+            _landingAudioSource.clip = landingClip;
+            _landingAudioSource.Play();
+            Debug.Log($"PlayerController - Landing SFX trigger");
+        }
     }
 }
