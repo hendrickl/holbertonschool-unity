@@ -329,7 +329,9 @@ public class PlayerController : MonoBehaviour
         else
         {
             if (_audioSource.isPlaying)
+            {
                 _audioSource.Stop();
+            }
         }
     }
 }
