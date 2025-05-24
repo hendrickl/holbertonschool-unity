@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Vector3 _resetPosition;
     [SerializeField] private Vector3 _resetRotation;
     [SerializeField] private LayerMask _ground;
-    // [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _animator;
 
     [SerializeField] private AudioSource _footstepsAudioSource;
     [SerializeField] private AudioSource _landingAudioSource;
@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     private bool _playerHasPermissionToMove;
     private bool _playerHasLandedOnGround;
     private bool _playerWasGroundedLastFrame;
-
     private bool _playerIsRunning;
     private bool _playerIsJumping;
     private bool _playerIsFalling;
@@ -39,9 +38,14 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
 
+         if (_animator == null)
+        {
+            Debug.Log($"PlayerController - Animator not assigned");
+        }
+
         transform.position = _startPosition;
 
-        _playerHasPermissionToMove = true;
+        _playerHasPermissionToMove = false;
         _playerHasLandedOnGround = false;
         _playerWasGroundedLastFrame = false;
 
@@ -59,21 +63,22 @@ public class PlayerController : MonoBehaviour
             _playerHasLandedOnGround = true;
         }
 
-        // Detect landing from jump
-        if (PlayerIsJumping() && !_playerWasGroundedLastFrame && PlayerIsGrounded())
+        if (_playerHasLandedOnGround)
         {
-            _playerIsJumping = false;
+            _playerHasPermissionToMove = true;
+            MovePlayer();
+            RotatePlayer();
         }
-
-        _playerWasGroundedLastFrame = PlayerIsGrounded(); // Remember grounded state for the next frame
 
         if (Input.GetKeyDown(KeyCode.Space) && PlayerIsGrounded() && _playerHasLandedOnGround)
         {
             Jump();
         }
 
-        RotatePlayer();
-        MovePlayer();
+        bool isGrounded = PlayerIsGrounded();
+        _animator.SetBool("isJumping", !isGrounded || PlayerIsJumping());
+        _animator.SetBool("isRunning", _playerIsRunning && isGrounded);
+
         CheckFall();
     }
 
@@ -88,12 +93,10 @@ public class PlayerController : MonoBehaviour
             if (verticalInput != 0)
             {
                 // Use the player's facing direction for movement
-                Vector3 movementOnZ = transform.forward * verticalInput;
-                Vector3 moveDirection = movementOnZ;
+                Vector3 moveDirection = transform.forward * verticalInput;
                 moveDirection.Normalize();
 
                 _rigidbody.velocity = new Vector3(moveDirection.x * _moveSpeed, _rigidbody.velocity.y, moveDirection.z * _moveSpeed);
-
                 _playerIsRunning = true;
             }
             else
@@ -102,13 +105,8 @@ public class PlayerController : MonoBehaviour
                 _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0);
                 _playerIsRunning = false;
             }
+            PlayFootstepsSFX();
         }
-        else
-        {
-            _rigidbody.velocity = new Vector3(0, _rigidbody.velocity.y, 0); // The player can fall under the effect of gravity but cannot move horizontally
-            _playerIsRunning = false;
-        }
-        PlayFootstepsSFX();
     }
 
     // Rotate player gradually based on horizontal input 
@@ -165,7 +163,7 @@ public class PlayerController : MonoBehaviour
         return _playerIsFallingFlat;
     }
 
-    // Methods to reset 
+    // Methods to reset transform properties 
     private void ResetPlayerPosition()
     {
         transform.position = _resetPosition;
@@ -192,7 +190,7 @@ public class PlayerController : MonoBehaviour
     // Method to trigger footstep sound effects based on floor type
     private void PlayFootstepsSFX()
     {
-        if (_playerIsRunning && PlayerIsGrounded() && !PlayerIsJumping())
+        if (_playerIsRunning && !PlayerIsJumping())
         {
             string groundTag = DetectGroundTag();
             AudioClip footstepsClip = null;
