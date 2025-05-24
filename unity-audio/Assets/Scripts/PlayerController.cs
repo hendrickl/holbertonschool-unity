@@ -75,10 +75,7 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
-        bool isGrounded = PlayerIsGrounded();
-        _animator.SetBool("isJumping", !isGrounded || PlayerIsJumping());
-        _animator.SetBool("isRunning", _playerIsRunning && isGrounded);
-
+        UpdateAnimatorStates();
         CheckFall();
     }
 
@@ -161,6 +158,14 @@ public class PlayerController : MonoBehaviour
     private bool PlayerIsFallingFlat()
     {
         return _playerIsFallingFlat;
+    }
+
+    // Method to manage the animator
+    private void UpdateAnimatorStates()
+    {
+        bool isGrounded = PlayerIsGrounded();
+        _animator.SetBool("isJumping", !isGrounded || PlayerIsJumping());
+        _animator.SetBool("isRunning", _playerIsRunning && isGrounded);
     }
 
     // Methods to reset transform properties 
