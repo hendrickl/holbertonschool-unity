@@ -31,11 +31,11 @@ public class PlayerController : MonoBehaviour
     private bool _playerWasGroundedLastFrame;
     private bool _playerIsCurrentlyGrounded;
 
-
     private bool _playerIsRunning;
     private bool _playerIsJumping;
-    private bool _playerIsFalling;
-    private bool _playerIsFallingFlat;
+
+    private float _jumpStartTime = 0f;
+    [SerializeField] float _minJumpDuration = 1.9f; // Minimum time before to be able into falling animation
 
     private void Start()
     {
@@ -55,8 +55,6 @@ public class PlayerController : MonoBehaviour
 
         _playerIsRunning = false;
         _playerIsJumping = false;
-        _playerIsFalling = false;
-        _playerIsFallingFlat = false;
     }
 
     private void Update()
@@ -76,6 +74,7 @@ public class PlayerController : MonoBehaviour
             RotatePlayer();
         }
 
+        
         if (Input.GetKeyDown(KeyCode.Space) && _playerIsCurrentlyGrounded && _playerHasLandedOnGround)
         {
             Jump();
@@ -133,6 +132,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         _playerIsJumping = true;
+        _jumpStartTime = Time.time; 
         _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _jumpForce, _rigidbody.velocity.z);
     }
 
@@ -157,29 +157,29 @@ public class PlayerController : MonoBehaviour
         return _playerIsJumping;
     }
 
-    private bool PlayerIsFallingFlat()
+    private bool PlayerIsFalling()
     {
-        return _playerIsFallingFlat;
+        bool isFalling = _rigidbody.velocity.y < -1f && (Time.time - _jumpStartTime) > _minJumpDuration;
+        return isFalling;
     }
 
     // Method to manage the animator
     private void UpdateAnimatorStates()
     {
         bool isGrounded = PlayerIsGrounded();
+        bool isJumping = PlayerIsJumping();
+        bool isFalling = PlayerIsFalling();
 
-        _animator.SetBool("isJumping", !isGrounded || PlayerIsJumping());
+        _animator.SetBool("isJumping", isJumping || !isGrounded);
         _animator.SetBool("isRunning", _playerIsRunning && isGrounded);
+        _animator.SetBool("isFalling", isFalling && !isGrounded);
 
-        if (transform.position == _resetPosition)
+        // Reset
+        if (transform.position == _resetPosition && !isGrounded)
         {
             _animator.SetBool("isFalling", true);
             _animator.SetBool("isJumping", false);
             _animator.SetBool("isRunning", false);
-
-            if (isGrounded)
-            {
-                _animator.SetBool("isFalling", false);
-            }
         }
     }
 

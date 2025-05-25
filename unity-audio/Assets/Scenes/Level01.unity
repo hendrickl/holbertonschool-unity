@@ -294,7 +294,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 926642819, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
       propertyPath: _jumpForce
-      value: 8.5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 926642819, guid: ec07c2c76097e134eba4c261bb8c5da9, type: 3}
       propertyPath: _audioSource

@@ -167,11 +167,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 5
   _rotationSpeed: 280
-  _jumpForce: 8.5
-  _fallThreshold: -20
+  _jumpForce: 7
+  _fallThreshold: -10
   _groundContactPoint: {fileID: 1408051492016878343}
   _startPosition: {x: 0, y: 1.25, z: 3.5}
-  _resetPosition: {x: 0, y: 10, z: 3.5}
+  _resetPosition: {x: 0, y: 50, z: 3.5}
   _resetRotation: {x: 0, y: 0, z: 0}
   _ground:
     serializedVersion: 2
@@ -188,6 +188,7 @@ MonoBehaviour:
   _terrainLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  _minJumpDuration: 1.9
 --- !u!114 &926642832
 MonoBehaviour:
   m_ObjectHideFlags: 0
