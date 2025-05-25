@@ -26,13 +26,13 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody _rigidbody;
 
-    private bool _playerHasPermissionToMove;
     private bool _playerHasLandedOnGround;
     private bool _playerWasGroundedLastFrame;
     private bool _playerIsCurrentlyGrounded;
 
     private bool _playerIsRunning;
     private bool _playerIsJumping;
+    private bool _playerIsFalling;
 
     private float _jumpStartTime = 0f;
     [SerializeField] float _minJumpDuration = 1.9f; // Minimum time before to be able into falling animation
@@ -48,32 +48,32 @@ public class PlayerController : MonoBehaviour
 
         transform.position = _startPosition;
 
-        _playerHasPermissionToMove = false;
         _playerHasLandedOnGround = false;
         _playerWasGroundedLastFrame = false;
         _playerIsCurrentlyGrounded = false;
 
         _playerIsRunning = false;
         _playerIsJumping = false;
+        _playerIsFalling = false;
     }
 
     private void Update()
     {
         _playerIsCurrentlyGrounded = PlayerIsGrounded();
+        _playerIsFalling = PlayerIsFalling();
 
         // Check if the player touched the ground for the first time
         if (_playerIsCurrentlyGrounded && !_playerWasGroundedLastFrame)
         {
             _playerHasLandedOnGround = true;
+            _playerIsFalling = false;
         }
 
-        if (_playerHasLandedOnGround)
+        if (_playerHasLandedOnGround && PlayerHasPermissionToMove()) 
         {
-            _playerHasPermissionToMove = true;
             MovePlayer();
             RotatePlayer();
         }
-
         
         if (Input.GetKeyDown(KeyCode.Space) && _playerIsCurrentlyGrounded && _playerHasLandedOnGround)
         {
@@ -89,11 +89,10 @@ public class PlayerController : MonoBehaviour
     // Move the player based on WASD and arrows input
     private void MovePlayer()
     {
-        if (_playerHasPermissionToMove)
+        if (PlayerHasPermissionToMove()) 
         {
             float verticalInput = Input.GetAxisRaw("Vertical");
 
-            // Only move and set running if there's actual input
             if (verticalInput != 0)
             {
                 // Use the player's facing direction for movement
@@ -116,7 +115,7 @@ public class PlayerController : MonoBehaviour
     // Rotate player gradually based on horizontal input 
     private void RotatePlayer()
     {
-        if (_playerHasPermissionToMove)
+        if (PlayerHasPermissionToMove()) 
         {
             float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -145,6 +144,14 @@ public class PlayerController : MonoBehaviour
     }
 
     // Methods to check the player's state
+    private bool PlayerHasPermissionToMove()
+    {
+        AnimatorStateInfo currentState = _animator.GetCurrentAnimatorStateInfo(0);
+        bool isInRestrictedAnimation = currentState.IsName("Falling") || currentState.IsName("Falling Flat Impact") || currentState.IsName("Getting Up");
+
+        return !isInRestrictedAnimation && !_playerIsFalling;
+    }
+
     private bool PlayerIsGrounded()
     {
         bool playerIsGrounded = Physics.CheckSphere(_groundContactPoint.position, 0.1f, _ground);
