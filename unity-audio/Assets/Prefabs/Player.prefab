@@ -188,7 +188,7 @@ MonoBehaviour:
   _terrainLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  _minJumpDuration: 1.9
+  _minJumpDuration: 2
 --- !u!114 &926642832
 MonoBehaviour:
   m_ObjectHideFlags: 0

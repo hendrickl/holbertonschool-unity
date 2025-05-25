@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
 
     private bool PlayerIsFalling()
     {
-        bool isFalling = _rigidbody.velocity.y < -3f && (Time.time - _jumpStartTime) > _minJumpDuration;
+        bool isFalling = _rigidbody.velocity.y < -9f && (Time.time - _jumpStartTime) > _minJumpDuration; // Velocity needs to be lesser than usual due jump action
         return isFalling;
     }
 
