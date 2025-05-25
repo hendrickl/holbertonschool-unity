@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     private bool _playerHasPermissionToMove;
     private bool _playerHasLandedOnGround;
     private bool _playerWasGroundedLastFrame;
+    private bool _playerIsCurrentlyGrounded;
+
+
     private bool _playerIsRunning;
     private bool _playerIsJumping;
     private bool _playerIsFalling;
@@ -38,7 +41,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
 
-         if (_animator == null)
+        if (_animator == null)
         {
             Debug.Log($"PlayerController - Animator not assigned");
         }
@@ -48,6 +51,7 @@ public class PlayerController : MonoBehaviour
         _playerHasPermissionToMove = false;
         _playerHasLandedOnGround = false;
         _playerWasGroundedLastFrame = false;
+        _playerIsCurrentlyGrounded = false;
 
         _playerIsRunning = false;
         _playerIsJumping = false;
@@ -57,8 +61,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        _playerIsCurrentlyGrounded = PlayerIsGrounded();
+
         // Check if the player touched the ground for the first time
-        if (PlayerIsGrounded() && !_playerWasGroundedLastFrame)
+        if (_playerIsCurrentlyGrounded && !_playerWasGroundedLastFrame)
         {
             _playerHasLandedOnGround = true;
         }
@@ -70,13 +76,15 @@ public class PlayerController : MonoBehaviour
             RotatePlayer();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && PlayerIsGrounded() && _playerHasLandedOnGround)
+        if (Input.GetKeyDown(KeyCode.Space) && _playerIsCurrentlyGrounded && _playerHasLandedOnGround)
         {
             Jump();
         }
 
         UpdateAnimatorStates();
         CheckFall();
+
+        _playerWasGroundedLastFrame = _playerIsCurrentlyGrounded; //Update previous state
     }
 
     // Move the player based on WASD and arrows input
@@ -149,12 +157,6 @@ public class PlayerController : MonoBehaviour
         return _playerIsJumping;
     }
 
-    private bool PlayerIsFalling()
-    {
-        _playerIsFalling = !PlayerIsGrounded() && _rigidbody.velocity.y < -1f;
-        return _playerIsFalling;
-    }
-
     private bool PlayerIsFallingFlat()
     {
         return _playerIsFallingFlat;
@@ -164,14 +166,28 @@ public class PlayerController : MonoBehaviour
     private void UpdateAnimatorStates()
     {
         bool isGrounded = PlayerIsGrounded();
+
         _animator.SetBool("isJumping", !isGrounded || PlayerIsJumping());
         _animator.SetBool("isRunning", _playerIsRunning && isGrounded);
+
+        if (transform.position == _resetPosition)
+        {
+            _animator.SetBool("isFalling", true);
+            _animator.SetBool("isJumping", false);
+            _animator.SetBool("isRunning", false);
+
+            if (isGrounded)
+            {
+                _animator.SetBool("isFalling", false);
+            }
+        }
     }
 
     // Methods to reset transform properties 
     private void ResetPlayerPosition()
     {
         transform.position = _resetPosition;
+
     }
 
     private void ResetPlayerRotation()
