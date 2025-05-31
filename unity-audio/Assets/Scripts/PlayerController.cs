@@ -69,12 +69,12 @@ public class PlayerController : MonoBehaviour
             _playerIsFalling = false;
         }
 
-        if (_playerHasLandedOnGround && PlayerHasPermissionToMove()) 
+        if (_playerHasLandedOnGround && PlayerHasPermissionToMove())
         {
             MovePlayer();
             RotatePlayer();
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Space) && _playerIsCurrentlyGrounded && _playerHasLandedOnGround)
         {
             Jump();
@@ -82,6 +82,7 @@ public class PlayerController : MonoBehaviour
 
         UpdateAnimatorStates();
         CheckFall();
+        DetectFallingFlatStateAnimator();
 
         _playerWasGroundedLastFrame = _playerIsCurrentlyGrounded; //Update previous state
     }
@@ -89,7 +90,7 @@ public class PlayerController : MonoBehaviour
     // Move the player based on WASD and arrows input
     private void MovePlayer()
     {
-        if (PlayerHasPermissionToMove()) 
+        if (PlayerHasPermissionToMove())
         {
             float verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
     // Rotate player gradually based on horizontal input 
     private void RotatePlayer()
     {
-        if (PlayerHasPermissionToMove()) 
+        if (PlayerHasPermissionToMove())
         {
             float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -131,7 +132,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         _playerIsJumping = true;
-        _jumpStartTime = Time.time; 
+        _jumpStartTime = Time.time;
         _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _jumpForce, _rigidbody.velocity.z);
     }
 
@@ -201,7 +202,7 @@ public class PlayerController : MonoBehaviour
     {
         transform.position = _resetRotation;
     }
-    
+
     // Method to detect the tag of the 2 differents ground
     private string DetectGroundTag()
     {
@@ -209,7 +210,6 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(_groundContactPoint.position, Vector3.down, out hit, 1f, _terrainLayerMask))
         {
-            Debug.Log($"PlayerController - Ground tag detected is {hit.collider.tag}");
             return hit.collider.tag;
         }
         return "";
@@ -275,6 +275,16 @@ public class PlayerController : MonoBehaviour
             _landingAudioSource.clip = landingClip;
             _landingAudioSource.Play();
             Debug.Log($"PlayerController - Landing SFX trigger");
+        }
+    }
+
+    private void DetectFallingFlatStateAnimator()
+    {
+        //When entering the Jump state in the Animator, output the message in the console
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Flat Impact"))
+        {
+            Debug.Log("PlayerController - Falling Flat Impact animation detected");
+            PlayLandingSFX();
         }
     }
 }
