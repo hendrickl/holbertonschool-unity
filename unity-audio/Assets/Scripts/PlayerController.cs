@@ -1,6 +1,5 @@
 
 using UnityEngine;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private bool _playerIsRunning;
     private bool _playerIsJumping;
     private bool _playerIsFalling;
+    private bool _playerShouldFallingFlat;
 
     private float _jumpStartTime = 0f;
     [SerializeField] float _minJumpDuration = 1.9f; // Minimum time before to be able into falling animation
@@ -56,8 +56,7 @@ public class PlayerController : MonoBehaviour
         _playerIsRunning = false;
         _playerIsJumping = false;
         _playerIsFalling = false;
-
-        StartCoroutine("WaitAndPlayFallingFlatAnimation");
+        _playerShouldFallingFlat = false;
     }
 
     private void Update()
@@ -85,7 +84,6 @@ public class PlayerController : MonoBehaviour
 
         UpdateAnimatorStates();
         CheckFall();
-        // DetectFallingFlatImpactStateAnimator();
 
         _playerWasGroundedLastFrame = _playerIsCurrentlyGrounded; //Update previous state
     }
@@ -180,27 +178,34 @@ public class PlayerController : MonoBehaviour
         bool isGrounded = PlayerIsGrounded();
         bool isJumping = PlayerIsJumping();
         bool isFalling = PlayerIsFalling();
+        bool isFallingFlat = DetectFallingStateAnimator();
+
+        if (transform.position == _resetPosition && isGrounded)
+        {
+            _animator.SetBool("isFalling", false);
+            _animator.SetBool("isFallingFlat", true);
+            _animator.SetBool("isJumping", false);
+            _animator.SetBool("isRunning", false);
+        }
+
+        if (transform.position == _resetPosition && !isGrounded)
+        {
+            _animator.SetBool("isFalling", true);
+            _animator.SetBool("isFallingFlat", false);
+            _animator.SetBool("isJumping", false);
+            _animator.SetBool("isRunning", false);
+        }
 
         _animator.SetBool("isJumping", isJumping || !isGrounded);
         _animator.SetBool("isRunning", _playerIsRunning && isGrounded);
         _animator.SetBool("isFalling", isFalling && !isGrounded);
-
-        // Reset
-        if (transform.position == _resetPosition && !isGrounded)
-        {
-            WaitAndPlayFallingFlatAnimation();
-            // _animator.SetBool("isFalling", true);
-            Debug.Log("PlayerController - 1 - Falling Flat Impact animation has started");
-            _animator.SetBool("isJumping", false);
-            _animator.SetBool("isRunning", false);
-        }
+        _animator.SetBool("isFallingFlat", isFallingFlat && isGrounded);
     }
 
     // Methods to reset transform properties 
     private void ResetPlayerPosition()
     {
         transform.position = _resetPosition;
-
     }
 
     private void ResetPlayerRotation()
@@ -279,25 +284,23 @@ public class PlayerController : MonoBehaviour
         {
             _landingAudioSource.clip = landingClip;
             _landingAudioSource.Play();
-            Debug.Log($"PlayerController - Landing SFX trigger");
+            Debug.Log($"PlayerController - Landing SFX is trigger");
         }
     }
 
-    IEnumerator WaitAndPlayFallingFlatAnimation()
+    // Detects if the current animation is "Falling" and sets a flag to trigger the falling flat sequence
+    private bool DetectFallingStateAnimator()
     {
-        PlayLandingSFX();
-        yield return new WaitForSeconds(1.5f);
-        _animator.SetBool("isFalling", true);
-    }
-
-    /*
-    private void DetectFallingFlatImpactStateAnimator()
-    {
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Flat Impact"))
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Falling"))
         {
-            Debug.Log("PlayerController - 2 - Falling Flat Impact animation has started");
-            PlayLandingSFX();
+            Debug.Log("PlayerController - Falling animation has started");
+            _playerShouldFallingFlat = true;
         }
+        else
+        {
+            _playerShouldFallingFlat = false;
+        }
+
+        return _playerShouldFallingFlat;
     }
-    */
 }
