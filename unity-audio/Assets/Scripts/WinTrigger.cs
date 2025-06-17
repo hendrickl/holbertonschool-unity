@@ -30,19 +30,25 @@ public class WinTrigger : MonoBehaviour
     private void Stop_timer()
     {
         if (_timer != null)
+        {
             _timer.enabled = false;
+        }
     }
 
     private void IncreaseTextSize()
     {
         if (_timerText != null)
+        {
             _timerText.fontSize = _increasedFontSize;
+        }
     }
 
     private void ChangeTextColor()
     {
         if (_timerText != null)
+        {
             _timerText.color = _winColor;
+        }
     }
 
     private void DisplayWinCanvas()
@@ -57,6 +63,8 @@ public class WinTrigger : MonoBehaviour
     private void DisplayFinalTime()
     {
         if (_timer != null)
+        {
             _timer.Win();
+        }
     }
 }

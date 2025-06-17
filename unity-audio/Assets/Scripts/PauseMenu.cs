@@ -28,16 +28,24 @@ public class PauseMenu : MonoBehaviour
         _mainMenuCanvas.SetActive(false);
 
         if (_resumeButton != null)
+        {
             _resumeButton.onClick.AddListener(Resume);
+        }
 
         if (_restartButton != null)
+        {
             _restartButton.onClick.AddListener(Restart);
+        }
 
         if (_mainMenuButton != null)
+        {
             _mainMenuButton.onClick.AddListener(MainMenu);
+        }
 
         if (_optionsButton != null)
+        {
             _optionsButton.onClick.AddListener(Options);
+        }
     }
 
     private void Update()
@@ -58,16 +66,24 @@ public class PauseMenu : MonoBehaviour
     private void OnDestroy()
     {
         if (_resumeButton != null)
+        {
             _resumeButton.onClick.RemoveListener(Resume);
-        
+        }
+
         if (_restartButton != null)
+        {
             _restartButton.onClick.RemoveListener(Restart);
+        }
 
         if (_mainMenuButton != null)
+        {
             _mainMenuButton.onClick.RemoveListener(MainMenu);
+        }
 
         if (_optionsButton != null)
+        {
             _optionsButton.onClick.RemoveListener(Options);
+        }
     }
 
     public void Pause()
@@ -101,7 +117,6 @@ public class PauseMenu : MonoBehaviour
 
     public void MainMenu()
     {
-        Debug.Log($"PauseMenu : MainMenu Button is clicked");
         _pauseCanvas.SetActive(false);
         _mainMenuCanvas.SetActive(true);
     }
@@ -109,8 +124,6 @@ public class PauseMenu : MonoBehaviour
     public void Options()
     {
         PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
-        Debug.Log($"Previous scene index: {SceneManager.GetActiveScene().buildIndex}");
-        
         SceneManager.LoadScene(1);
     }
 }

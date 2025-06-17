@@ -20,7 +20,9 @@ public class Timer : MonoBehaviour
     public void StartTimer()
     {
         if (!_isRunning)
+        {
             _isRunning = true;
+        }
     }
 
     private void UpdateTimer()
@@ -35,9 +37,7 @@ public class Timer : MonoBehaviour
 
     public void Win()
     {
-        Debug.Log($"Timer - called");
         _isRunning = false;
         _finalTimeText.text = _timerText.text;
-        Debug.Log($"Timer - Final time: {_finalTimeText.text}");
     }
 }
