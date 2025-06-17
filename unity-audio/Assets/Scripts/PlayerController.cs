@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System.Collections;
 
@@ -55,6 +56,8 @@ public class PlayerController : MonoBehaviour
         _playerIsRunning = false;
         _playerIsJumping = false;
         _playerIsFalling = false;
+
+        StartCoroutine("WaitAndPlayFallingFlatAnimation");
     }
 
     private void Update()
@@ -82,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
         UpdateAnimatorStates();
         CheckFall();
-        DetectFallingFlatStateAnimator();
+        // DetectFallingFlatImpactStateAnimator();
 
         _playerWasGroundedLastFrame = _playerIsCurrentlyGrounded; //Update previous state
     }
@@ -185,7 +188,9 @@ public class PlayerController : MonoBehaviour
         // Reset
         if (transform.position == _resetPosition && !isGrounded)
         {
-            _animator.SetBool("isFalling", true);
+            WaitAndPlayFallingFlatAnimation();
+            // _animator.SetBool("isFalling", true);
+            Debug.Log("PlayerController - 1 - Falling Flat Impact animation has started");
             _animator.SetBool("isJumping", false);
             _animator.SetBool("isRunning", false);
         }
@@ -278,13 +283,21 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void DetectFallingFlatStateAnimator()
+    IEnumerator WaitAndPlayFallingFlatAnimation()
     {
-        //When entering the Jump state in the Animator, output the message in the console
+        PlayLandingSFX();
+        yield return new WaitForSeconds(1.5f);
+        _animator.SetBool("isFalling", true);
+    }
+
+    /*
+    private void DetectFallingFlatImpactStateAnimator()
+    {
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Flat Impact"))
         {
-            Debug.Log("PlayerController - Falling Flat Impact animation detected");
+            Debug.Log("PlayerController - 2 - Falling Flat Impact animation has started");
             PlayLandingSFX();
         }
     }
+    */
 }
