@@ -19,7 +19,6 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         isInverted = PlayerPrefs.GetInt("Y-axisIsInverted", 0) == 1;
-        Debug.Log($"Y-axis is inverted value: {PlayerPrefs.GetInt("Y-axisIsInverted", 0)}");
     }
 
     private void LateUpdate()
@@ -42,12 +41,10 @@ public class CameraController : MonoBehaviour
         if (!_requireRightClick || Input.GetMouseButton(1)) // 1 is right mouse button
         {
             _currentRotationX += l_mouseX;
-            Debug.Log($"currentRotationX: {_currentRotationX}");
 
             float l_verticalRotation = isInverted ? -l_mouseY : l_mouseY;
             _currentRotationY = Mathf.Clamp(_currentRotationY + l_verticalRotation, MIN_VERTICAL_ANGLE, MAX_VERTICAL_ANGLE);
             // _currentRotationY += l_verticalRotation;
-            Debug.Log($"currentRotationY: {_currentRotationY}");
         }
 
         Vector3 l_direction = Quaternion.Euler(_currentRotationY, _currentRotationX, 0) * Vector3.forward;

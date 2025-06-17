@@ -14,46 +14,64 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         if (_level01Button != null)
+        {
             _level01Button.onClick.AddListener(() => LevelSelect(2));
-        
+        }
+
         if (_level02Button != null)
+        {
             _level02Button.onClick.AddListener(() => LevelSelect(3));
-        
+        }
+
         if (_level03Button != null)
+        {
             _level03Button.onClick.AddListener(() => LevelSelect(4));
+        }
 
         if (_optionsButton != null)
+        {
             _optionsButton.onClick.AddListener(() => LevelSelect(1));
-            
-        if (_exitButton != null)
-            _exitButton.onClick.AddListener(() => Debug.Log($"Exited"));
+        }
 
-        // _exitButton.onClick.AddListener(() => Application.Quit());
+        if (_exitButton != null)
+        {
+            _exitButton.onClick.AddListener(() => Debug.Log($"Exited"));
+            // _exitButton.onClick.AddListener(() => Application.Quit());
+        }
+
     }
 
     public void LevelSelect(int level)
     {
         PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
-        Debug.Log($"Previous scene index: {SceneManager.GetActiveScene().buildIndex}");
-        
         SceneManager.LoadScene(level);
     }
 
     private void OnDestroy()
     {
         if (_level01Button != null)
+        {
             _level01Button.onClick.RemoveAllListeners();
-        
+        }
+
         if (_level02Button != null)
+        {
             _level02Button.onClick.RemoveAllListeners();
-        
+        }
+
         if (_level03Button != null)
+        {
             _level03Button.onClick.RemoveAllListeners();
+        }
 
         if (_optionsButton != null)
+        {
             _optionsButton.onClick.RemoveAllListeners();
+        }
 
         if (_exitButton != null)
+        {
             _optionsButton.onClick.RemoveAllListeners();
+        }
     }
 }

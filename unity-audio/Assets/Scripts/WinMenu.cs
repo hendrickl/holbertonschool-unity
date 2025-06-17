@@ -14,19 +14,27 @@ public class WinMenu : MonoBehaviour
     private void Start()
     {
         if (_menuButton != null)
+        {
             _menuButton.onClick.AddListener(MainMenu);
+        }
 
         if (_nextButton != null)
+        {
             _nextButton.onClick.AddListener(Next);
+        }
     }
 
     private void OnDestroy() 
     {
         if (_menuButton != null)
+        {
             _menuButton.onClick.RemoveListener(MainMenu);    
+        }
 
         if (_nextButton != null)
+        {
             _nextButton.onClick.RemoveListener(Next);
+        }
     }
 
     public void MainMenu()

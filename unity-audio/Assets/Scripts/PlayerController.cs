@@ -1,5 +1,5 @@
+
 using UnityEngine;
-using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private bool _playerIsRunning;
     private bool _playerIsJumping;
     private bool _playerIsFalling;
+    private bool _playerShouldFallingFlat;
 
     private float _jumpStartTime = 0f;
     [SerializeField] float _minJumpDuration = 1.9f; // Minimum time before to be able into falling animation
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
         _playerIsRunning = false;
         _playerIsJumping = false;
         _playerIsFalling = false;
+        _playerShouldFallingFlat = false;
     }
 
     private void Update()
@@ -69,12 +71,12 @@ public class PlayerController : MonoBehaviour
             _playerIsFalling = false;
         }
 
-        if (_playerHasLandedOnGround && PlayerHasPermissionToMove()) 
+        if (_playerHasLandedOnGround && PlayerHasPermissionToMove())
         {
             MovePlayer();
             RotatePlayer();
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Space) && _playerIsCurrentlyGrounded && _playerHasLandedOnGround)
         {
             Jump();
@@ -89,7 +91,7 @@ public class PlayerController : MonoBehaviour
     // Move the player based on WASD and arrows input
     private void MovePlayer()
     {
-        if (PlayerHasPermissionToMove()) 
+        if (PlayerHasPermissionToMove())
         {
             float verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -115,7 +117,7 @@ public class PlayerController : MonoBehaviour
     // Rotate player gradually based on horizontal input 
     private void RotatePlayer()
     {
-        if (PlayerHasPermissionToMove()) 
+        if (PlayerHasPermissionToMove())
         {
             float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -131,7 +133,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         _playerIsJumping = true;
-        _jumpStartTime = Time.time; 
+        _jumpStartTime = Time.time;
         _rigidbody.velocity = new Vector3(_rigidbody.velocity.x, _jumpForce, _rigidbody.velocity.z);
     }
 
@@ -176,32 +178,41 @@ public class PlayerController : MonoBehaviour
         bool isGrounded = PlayerIsGrounded();
         bool isJumping = PlayerIsJumping();
         bool isFalling = PlayerIsFalling();
+        bool isFallingFlat = DetectFallingStateAnimator();
+
+        if (transform.position == _resetPosition && isGrounded)
+        {
+            _animator.SetBool("isFalling", false);
+            _animator.SetBool("isFallingFlat", true);
+            _animator.SetBool("isJumping", false);
+            _animator.SetBool("isRunning", false);
+        }
+
+        if (transform.position == _resetPosition && !isGrounded)
+        {
+            _animator.SetBool("isFalling", true);
+            _animator.SetBool("isFallingFlat", false);
+            _animator.SetBool("isJumping", false);
+            _animator.SetBool("isRunning", false);
+        }
 
         _animator.SetBool("isJumping", isJumping || !isGrounded);
         _animator.SetBool("isRunning", _playerIsRunning && isGrounded);
         _animator.SetBool("isFalling", isFalling && !isGrounded);
-
-        // Reset
-        if (transform.position == _resetPosition && !isGrounded)
-        {
-            _animator.SetBool("isFalling", true);
-            _animator.SetBool("isJumping", false);
-            _animator.SetBool("isRunning", false);
-        }
+        _animator.SetBool("isFallingFlat", isFallingFlat && isGrounded);
     }
 
     // Methods to reset transform properties 
     private void ResetPlayerPosition()
     {
         transform.position = _resetPosition;
-
     }
 
     private void ResetPlayerRotation()
     {
         transform.position = _resetRotation;
     }
-    
+
     // Method to detect the tag of the 2 differents ground
     private string DetectGroundTag()
     {
@@ -209,7 +220,6 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(_groundContactPoint.position, Vector3.down, out hit, 1f, _terrainLayerMask))
         {
-            Debug.Log($"PlayerController - Ground tag detected is {hit.collider.tag}");
             return hit.collider.tag;
         }
         return "";
@@ -274,7 +284,23 @@ public class PlayerController : MonoBehaviour
         {
             _landingAudioSource.clip = landingClip;
             _landingAudioSource.Play();
-            Debug.Log($"PlayerController - Landing SFX trigger");
+            Debug.Log($"PlayerController - Landing SFX is trigger");
         }
+    }
+
+    // Detects if the current animation is "Falling" and sets a flag to trigger the falling flat sequence
+    private bool DetectFallingStateAnimator()
+    {
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Falling"))
+        {
+            Debug.Log("PlayerController - Falling animation has started");
+            _playerShouldFallingFlat = true;
+        }
+        else
+        {
+            _playerShouldFallingFlat = false;
+        }
+
+        return _playerShouldFallingFlat;
     }
 }
