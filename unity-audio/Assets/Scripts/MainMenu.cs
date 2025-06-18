@@ -13,6 +13,11 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopLevelBackgroundMusic();
+        }
+
         if (_level01Button != null)
         {
             _level01Button.onClick.AddListener(() => LevelSelect(2));
