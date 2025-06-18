@@ -85,6 +85,11 @@ public class PlayerController : MonoBehaviour
         UpdateAnimatorStates();
         CheckFall();
 
+        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Flat Impact"))
+        {
+            PlayLandingSFX();
+        }
+
         _playerWasGroundedLastFrame = _playerIsCurrentlyGrounded; //Update previous state
     }
 
@@ -284,7 +289,7 @@ public class PlayerController : MonoBehaviour
         {
             _landingAudioSource.clip = landingClip;
             _landingAudioSource.Play();
-            Debug.Log($"PlayerController - Landing SFX is trigger");
+            Debug.Log($"PlayerController - Landing SFX {landingClip} is trigger");
         }
     }
 
