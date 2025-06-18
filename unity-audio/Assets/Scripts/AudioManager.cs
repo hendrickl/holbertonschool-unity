@@ -11,7 +11,7 @@ public class AudioManager : MonoBehaviour
     {
         if (Instance != null && Instance != this)
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
             return;
         }
 
@@ -37,5 +37,18 @@ public class AudioManager : MonoBehaviour
         {
             _audioSource.Stop();
         }
+    }
+
+    public void PauseLevelbackgroundMusic()
+    {
+        if (_audioSource.isPlaying)
+        {
+            _audioSource.Pause();
+        }
+    }
+
+    public void ResumeLevelbackgroundMusic()
+    {
+        _audioSource.UnPause();
     }
 }

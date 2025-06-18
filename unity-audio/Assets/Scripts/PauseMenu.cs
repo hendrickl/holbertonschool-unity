@@ -55,11 +55,11 @@ public class PauseMenu : MonoBehaviour
             if (_isPaused)
             {
                 Resume();
-                AudioManager.Instance.InitializeLevelBackgroundMusic();
+                AudioManager.Instance.ResumeLevelbackgroundMusic();
             }
             else
             {
-                AudioManager.Instance.StopLevelBackgroundMusic();
+                AudioManager.Instance.PauseLevelbackgroundMusic();
                 Pause();
             }
         }
