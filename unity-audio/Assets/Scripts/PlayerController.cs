@@ -85,10 +85,12 @@ public class PlayerController : MonoBehaviour
         UpdateAnimatorStates();
         CheckFall();
 
+        /*
         if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Flat Impact"))
         {
             PlayLandingSFX();
         }
+        */
 
         _playerWasGroundedLastFrame = _playerIsCurrentlyGrounded; //Update previous state
     }
@@ -271,7 +273,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Method to trigger landing sound effects based on floor type
-    private void PlayLandingSFX()
+    public void PlayLandingSFX()
     {
         string groundTag = DetectGroundTag();
         AudioClip landingClip = null;
