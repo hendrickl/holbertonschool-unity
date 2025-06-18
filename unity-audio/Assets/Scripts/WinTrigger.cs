@@ -19,6 +19,11 @@ public class WinTrigger : MonoBehaviour
     {
         if (p_other.CompareTag("Player"))
         {
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.StopLevelBackgroundMusic();
+            }
+
             DisplayWinCanvas();
             Stop_timer();
             IncreaseTextSize();

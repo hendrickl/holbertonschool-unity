@@ -85,13 +85,6 @@ public class PlayerController : MonoBehaviour
         UpdateAnimatorStates();
         CheckFall();
 
-        /*
-        if (_animator.GetCurrentAnimatorStateInfo(0).IsName("Falling Flat Impact"))
-        {
-            PlayLandingSFX();
-        }
-        */
-
         _playerWasGroundedLastFrame = _playerIsCurrentlyGrounded; //Update previous state
     }
 

@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da5279687170fc42b300679ae16c838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioManager: {fileID: 5012165755443590063, guid: eafd1e86f9935014b8ab547afd70207f, type: 3}
   _timer: {fileID: 0}
   _winCanvas: {fileID: 0}
   _timerText: {fileID: 0}
