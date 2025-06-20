@@ -5,7 +5,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     [SerializeField] private AudioSource _audioSource;
-    [SerializeField] private AudioClip _cherryMondayClip;
+    [SerializeField] private AudioClip _cheerryMondayClip;
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
 
     public void InitializeLevelBackgroundMusic()
     {
-        _audioSource.clip = _cherryMondayClip;
+        _audioSource.clip = _cheerryMondayClip;
         _audioSource.loop = true;
         _audioSource.Play();
     }

@@ -619,6 +619,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5012165755443590063, guid: eafd1e86f9935014b8ab547afd70207f, type: 3}
+      propertyPath: _cheerryMondayClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d397ea4729b75644c80e96767dc5a70a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eafd1e86f9935014b8ab547afd70207f, type: 3}
 --- !u!1001 &412913629
