@@ -4,8 +4,12 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioSource _bgmAudioSource;
+    [SerializeField] private AudioSource _winAudioSource;
     [SerializeField] private AudioClip _cheerryMondayClip;
+    [SerializeField] private AudioClip _victoryClip;
+
+    private bool _musicStarted = false;
 
     private void Awake()
     {
@@ -26,29 +30,48 @@ public class AudioManager : MonoBehaviour
 
     public void InitializeLevelBackgroundMusic()
     {
-        _audioSource.clip = _cheerryMondayClip;
-        _audioSource.loop = true;
-        _audioSource.Play();
+        if (_musicStarted) return;
+
+        _bgmAudioSource.clip = _cheerryMondayClip;
+        _bgmAudioSource.loop = true;
+        _bgmAudioSource.Play();
+        _musicStarted = true;
     }
 
     public void StopLevelBackgroundMusic()
     {
-        if (_audioSource.isPlaying)
+        if (_bgmAudioSource.isPlaying)
         {
-            _audioSource.Stop();
+            _bgmAudioSource.Stop();
+            _musicStarted = false;
         }
     }
 
     public void PauseLevelbackgroundMusic()
     {
-        if (_audioSource.isPlaying)
+        if (_bgmAudioSource.isPlaying)
         {
-            _audioSource.Pause();
+            _bgmAudioSource.Pause();
         }
     }
 
     public void ResumeLevelbackgroundMusic()
     {
-        _audioSource.UnPause();
+        _bgmAudioSource.UnPause();
+    }
+
+    public void PlayVictorySting()
+    {
+        StopLevelBackgroundMusic();
+
+        if (_winAudioSource != null && _victoryClip != null)
+        {
+            _winAudioSource.clip = _victoryClip;
+            _winAudioSource.Play();
+        }
+        else
+        {
+            Debug.Log($"AudioManager - Missing AudioSource or Clip for VictorySting");
+        }
     }
 }

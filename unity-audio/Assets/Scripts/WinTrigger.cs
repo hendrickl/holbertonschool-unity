@@ -21,7 +21,7 @@ public class WinTrigger : MonoBehaviour
         {
             if (AudioManager.Instance != null)
             {
-                AudioManager.Instance.StopLevelBackgroundMusic();
+                AudioManager.Instance.PlayVictorySting();
             }
 
             DisplayWinCanvas();
