@@ -46,12 +46,6 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    public void LevelSelect(int level)
-    {
-        PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
-        SceneManager.LoadScene(level);
-    }
-
     private void OnDestroy()
     {
         if (_level01Button != null)
@@ -78,5 +72,11 @@ public class MainMenu : MonoBehaviour
         {
             _optionsButton.onClick.RemoveAllListeners();
         }
+    }
+
+    public void LevelSelect(int level)
+    {
+        PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(level);
     }
 }
