@@ -1,13 +1,20 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    [SerializeField] private AudioMixer _audioMixer;
+
     [SerializeField] private AudioSource _bgmAudioSource;
     [SerializeField] private AudioSource _winAudioSource;
+
     [SerializeField] private AudioClip _cheerryMondayClip;
     [SerializeField] private AudioClip _victoryClip;
+
+    [SerializeField] private string _defaultSnapshotName = "Default";
+    [SerializeField] private string _pausedSnapshotName = "Paused";
 
     private bool _musicStarted = false;
 
@@ -73,5 +80,17 @@ public class AudioManager : MonoBehaviour
         {
             Debug.Log($"AudioManager - Missing AudioSource or Clip for VictorySting");
         }
+    }
+
+    public void ApplyDefaultSnapshot()
+    {
+        _audioMixer.FindSnapshot(_defaultSnapshotName).TransitionTo(0.5f);
+        Debug.Log($"AudioManager - Default snapshot applied");
+    }
+
+    public void ApplyPausedSnapshot()
+    {
+        _audioMixer.FindSnapshot(_pausedSnapshotName).TransitionTo(0.5f);
+        Debug.Log($"AudioManager - Paused snapshot applied");
     }
 }

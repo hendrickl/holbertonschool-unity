@@ -46,10 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2a83c900bbc8be47b515a77813759cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioMixer: {fileID: 24100000, guid: da278d145dc6e734c895721f34d537ae, type: 2}
   _bgmAudioSource: {fileID: 3718953945110126431}
   _winAudioSource: {fileID: 7211870952782822566}
   _cheerryMondayClip: {fileID: 8300000, guid: d397ea4729b75644c80e96767dc5a70a, type: 3}
   _victoryClip: {fileID: 8300000, guid: 700a02a9a6ef66949ad705a5bf05568a, type: 3}
+  _defaultSnapshotName: Default
+  _pausedSnapshotName: Paused
 --- !u!82 &3718953945110126431
 AudioSource:
   m_ObjectHideFlags: 0

@@ -55,11 +55,9 @@ public class PauseMenu : MonoBehaviour
             if (_isPaused)
             {
                 Resume();
-                AudioManager.Instance.ResumeLevelbackgroundMusic();
             }
             else
             {
-                AudioManager.Instance.PauseLevelbackgroundMusic();
                 Pause();
             }
         }
@@ -98,6 +96,14 @@ public class PauseMenu : MonoBehaviour
         {
             _timer.enabled = false;
         }
+
+         Debug.Log("PauseMenu: Pause");
+
+        if (AudioManager.Instance != null)
+        {
+            // AudioManager.Instance.PauseLevelbackgroundMusic();
+            AudioManager.Instance.ApplyPausedSnapshot();
+        }
     }
 
     public void Resume()
@@ -105,11 +111,18 @@ public class PauseMenu : MonoBehaviour
         _isPaused = false;
         _pauseCanvas.SetActive(false);
         Time.timeScale = 1f;
-        AudioManager.Instance.ResumeLevelbackgroundMusic();
 
         if (_timer != null)
         {
             _timer.enabled = true;
+        }
+
+         Debug.Log("PauseMenu: Resume");
+
+        if (AudioManager.Instance != null)
+        {
+            // AudioManager.Instance.ResumeLevelbackgroundMusic();
+            AudioManager.Instance.ApplyDefaultSnapshot();
         }
     }
 
