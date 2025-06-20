@@ -105,6 +105,7 @@ public class PauseMenu : MonoBehaviour
         _isPaused = false;
         _pauseCanvas.SetActive(false);
         Time.timeScale = 1f;
+        AudioManager.Instance.ResumeLevelbackgroundMusic();
 
         if (_timer != null)
         {
