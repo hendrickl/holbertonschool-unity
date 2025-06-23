@@ -2105,6 +2105,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4868257760294354978}
     m_Modifications:
+    - target: {fileID: 796867599935722844, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 796867599935722844, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 796867599935722844, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6102870680877612093, guid: 8db24233f23fbb442a66465cfc0a03dc, type: 3}
+    - target: {fileID: 796867599935722844, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 796867599935722844, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlayOneShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 796867599935722844, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.AudioSource, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 796867599935722844, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: 718a6610a47efb3418bfc50c07449b24, type: 3}
+    - target: {fileID: 796867599935722844, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.AudioClip, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 796867599935722846, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
       propertyPath: m_Name
       value: BackButton
@@ -2212,7 +2244,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 796867599935722844, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
   m_PrefabInstance: {fileID: 4868257760000252525}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 5224330047136288563}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -2223,6 +2255,40 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 796867599935722847, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
   m_PrefabInstance: {fileID: 4868257760000252525}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5224330047136288563 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 796867599935722846, guid: 9feec7f0150197544865ab86c12d3c0a, type: 3}
+  m_PrefabInstance: {fileID: 4868257760000252525}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6057767716648594101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5224330047136288563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6102870680877612093, guid: 8db24233f23fbb442a66465cfc0a03dc, type: 3}
+          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+          m_MethodName: PlayOneShot
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: 277b6dd9d5d174242829dc7b5cdd4a1e, type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1001 &6181963771621466715
 PrefabInstance:
   m_ObjectHideFlags: 0
