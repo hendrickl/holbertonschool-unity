@@ -162,6 +162,9 @@ AudioMixerController:
     - 0b397f21a0d6a154d93eb285fc755411
     - f9ed6efcbc1a5ca46bfeb1eeaee36ef8
     - 5536c9bb270205c47b3b4e3ee8e9e33a
+    - f3d5ef0f411926c41a2c3622f90510ee
+    - d623a55fe4f1f1142a2050cee7c6c8d7
+    - 71a377b74d72cde4b83320476dd632b4
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -280,8 +283,8 @@ AudioMixerGroupController:
   m_Pitch: 4ee811209619ec64883b013e0142c8b8
   m_Send: 00000000000000000000000000000000
   m_Effects:
-  - {fileID: 7518544188722133147}
   - {fileID: 8367335854258665184}
+  - {fileID: 7518544188722133147}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

@@ -24,6 +24,12 @@ public class OptionsMenu : MonoBehaviour
         _backButton.onClick.AddListener(Back);
     }
 
+    private void OnDestroy() 
+    {
+        _applyButton.onClick.RemoveListener(Apply);
+        _backButton.onClick.RemoveListener(Back);
+    }
+
     public void Apply()
     {
         PlayerPrefs.SetInt("Y-axisIsInverted", _invertYButton.isOn ? 1 : 0);
@@ -34,11 +40,5 @@ public class OptionsMenu : MonoBehaviour
     public void Back()
     {
         SceneManager.LoadScene(_previousSceneIndex);
-    }
-
-    private void OnDestroy() 
-    {
-        _applyButton.onClick.RemoveListener(Apply);
-        _backButton.onClick.RemoveListener(Back);
     }
 }

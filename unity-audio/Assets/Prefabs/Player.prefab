@@ -201,13 +201,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56f346c20a13ee40b460a37deec052a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pauseCanvas: {fileID: 0}
-  _mainMenuCanvas: {fileID: 0}
-  _timer: {fileID: 0}
-  _resumeButton: {fileID: 0}
-  _restartButton: {fileID: 0}
-  _mainMenuButton: {fileID: 0}
-  _optionsButton: {fileID: 0}
+  _pauseCanvas: {fileID: 388559380210274400, guid: 48cc60f5971742147861d395d34a98b5, type: 3}
+  _mainMenuCanvas: {fileID: 7741829899890395572, guid: f7269c35873639441a4b1e9fc7af6230, type: 3}
+  _timer: {fileID: 3963449761713479965, guid: 3321a497054a8d94c8b0e840ceee6362, type: 3}
+  _resumeButton: {fileID: 195953824488818199, guid: d66504f4e790c5d4fb44762de1253c28, type: 3}
+  _restartButton: {fileID: 1644605518136280985, guid: 0b30bb8c8515bcb4dbc12c837d45acf3, type: 3}
+  _mainMenuButton: {fileID: 6436569101303803370, guid: 8437cd34684f7034da6c8181523b7692, type: 3}
+  _optionsButton: {fileID: 6871587247571601688, guid: f18b62b33e7c9ae4f83bece29ec0928f, type: 3}
 --- !u!114 &5248504560075401267
 MonoBehaviour:
   m_ObjectHideFlags: 0
