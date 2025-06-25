@@ -13,11 +13,6 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        if (AudioManager.Instance != null)
-        {
-            AudioManager.Instance.StopLevelBackgroundMusic();
-        }
-
         if (_level01Button != null)
         {
             _level01Button.onClick.AddListener(() => LevelSelect(2));
@@ -77,6 +72,7 @@ public class MainMenu : MonoBehaviour
     public void LevelSelect(int level)
     {
         PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
+        AudioManager.Instance.InitializeLevelBackgroundMusic();
         SceneManager.LoadScene(level);
     }
 }

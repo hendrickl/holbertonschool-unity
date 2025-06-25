@@ -51,6 +51,7 @@ MonoBehaviour:
   _winAudioSource: {fileID: 7211870952782822566}
   _cheerryMondayClip: {fileID: 8300000, guid: d397ea4729b75644c80e96767dc5a70a, type: 3}
   _victoryClip: {fileID: 8300000, guid: 700a02a9a6ef66949ad705a5bf05568a, type: 3}
+  _wallPaperClip: {fileID: 8300000, guid: 9023b8fb92e2e664bace94ef3ca04520, type: 3}
   _defaultSnapshotName: Default
   _pausedSnapshotName: Paused
 --- !u!82 &3718953945110126431

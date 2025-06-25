@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -12,11 +13,13 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioClip _cheerryMondayClip;
     [SerializeField] private AudioClip _victoryClip;
+    [SerializeField] private AudioClip _wallPaperClip;
 
     [SerializeField] private string _defaultSnapshotName = "Default";
     [SerializeField] private string _pausedSnapshotName = "Paused";
 
     private bool _musicStarted = false;
+    private string _currentScene;
 
     private void Awake()
     {
@@ -32,6 +35,7 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        _currentScene = SceneManager.GetActiveScene().name;
         InitializeLevelBackgroundMusic();
     }
 
@@ -39,10 +43,26 @@ public class AudioManager : MonoBehaviour
     {
         if (_musicStarted) return;
 
-        _bgmAudioSource.clip = _cheerryMondayClip;
-        _bgmAudioSource.loop = true;
-        _bgmAudioSource.Play();
-        _musicStarted = true;
+        if (_currentScene == "Level01")
+        {
+            _bgmAudioSource.clip = _cheerryMondayClip;
+            _bgmAudioSource.Play();
+            _musicStarted = true;
+        }
+
+        if (_currentScene == "Options")
+        {
+            _bgmAudioSource.clip = _wallPaperClip;
+            _bgmAudioSource.Play();
+            _musicStarted = true;
+        }
+
+        if (_currentScene == "MainMenu")
+        {
+            _bgmAudioSource.clip = _wallPaperClip;
+            _bgmAudioSource.Play();
+            _musicStarted = true;
+        }
     }
 
     public void StopLevelBackgroundMusic()
