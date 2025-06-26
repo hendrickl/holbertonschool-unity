@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 // This script manages navigation between scenes
@@ -15,22 +14,22 @@ public class MainMenu : MonoBehaviour
     {
         if (_level01Button != null)
         {
-            _level01Button.onClick.AddListener(() => LevelSelect(2));
+            _level01Button.onClick.AddListener(() => ScenesManager.LevelSelect(2));
         }
 
         if (_level02Button != null)
         {
-            _level02Button.onClick.AddListener(() => LevelSelect(3));
+            _level02Button.onClick.AddListener(() => ScenesManager.LevelSelect(3));
         }
 
         if (_level03Button != null)
         {
-            _level03Button.onClick.AddListener(() => LevelSelect(4));
+            _level03Button.onClick.AddListener(() => ScenesManager.LevelSelect(4));
         }
 
         if (_optionsButton != null)
         {
-            _optionsButton.onClick.AddListener(() => LevelSelect(1));
+            _optionsButton.onClick.AddListener(() => ScenesManager.LevelSelect(1));
         }
 
         if (_exitButton != null)
@@ -67,12 +66,5 @@ public class MainMenu : MonoBehaviour
         {
             _optionsButton.onClick.RemoveAllListeners();
         }
-    }
-
-    public void LevelSelect(int level)
-    {
-        PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
-        AudioManager.Instance.InitializeLevelBackgroundMusic();
-        SceneManager.LoadScene(level);
     }
 }

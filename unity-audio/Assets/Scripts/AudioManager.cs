@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -33,15 +32,15 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    private void Update()
     {
-        _currentScene = SceneManager.GetActiveScene().name;
         InitializeLevelBackgroundMusic();
     }
 
     public void InitializeLevelBackgroundMusic()
     {
         if (_musicStarted) return;
+
 
         if (_currentScene == "Level01")
         {
