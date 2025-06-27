@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private string _defaultSnapshotName = "Default";
     [SerializeField] private string _pausedSnapshotName = "Paused";
 
+    public Slider bgmSlider;
+    public float bgmValue;
     private bool _musicStarted = false;
 
     private void Awake()
@@ -31,6 +34,11 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+
+    }
+
     private void Update()
     {
         if (ScenesManager.GetCurrentSceneName() == "Level01")
@@ -42,7 +50,7 @@ public class AudioManager : MonoBehaviour
     public void PlayLevelBackgroundMusic()
     {
         if (_musicStarted) return;
- 
+
         string sceneName = ScenesManager.GetCurrentSceneName();
 
         if (sceneName == "Level01" || sceneName == "Level02" || sceneName == "Level03")
@@ -51,7 +59,7 @@ public class AudioManager : MonoBehaviour
         }
         else if (sceneName == "Options" || sceneName == "MainMenu")
         {
-            _bgmAudioSource.clip = _cheerryMondayClip;
+            _bgmAudioSource.clip = _wallPaperClip;
         }
 
         _bgmAudioSource.Play();
@@ -105,5 +113,11 @@ public class AudioManager : MonoBehaviour
     {
         _audioMixer.FindSnapshot(_pausedSnapshotName).TransitionTo(0.5f);
         Debug.Log($"AudioManager - Paused snapshot applied");
+    }
+    
+    public void OnBGMValueChanged()
+    {
+        _bgmAudioSource.volume = bgmSlider.value;
+        Debug.Log($"OptionsMenu - BGM Value : {bgmSlider.value}");
     }
 }

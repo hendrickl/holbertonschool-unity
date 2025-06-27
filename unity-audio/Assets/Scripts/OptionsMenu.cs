@@ -7,17 +7,12 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private Button _applyButton;
     [SerializeField] private Button _backButton;
     [SerializeField] private Toggle _invertYButton;
-    [SerializeField] private Slider _bgmSlider;
-    [SerializeField] private AudioSource _bgmAudiosource;
-
-    // private int _previousSceneIndex;
-    private float _bgmValue;
 
     private void Start()
     {
         bool isYaxisInverted = PlayerPrefs.GetInt("Y-axisIsInverted", 0) == 1;
         ScenesManager.PreviousSceneIndex = PlayerPrefs.GetInt("PreviousScene");
-        _bgmValue = PlayerPrefs.GetFloat("BGMValue", _bgmSlider.value);
+        PlayerPrefs.GetFloat("BGMValue", AudioManager.Instance.bgmSlider.value);
 
         if (_invertYButton != null)
         {
@@ -34,9 +29,9 @@ public class OptionsMenu : MonoBehaviour
             _backButton.onClick.AddListener(Back);
         }
 
-        if (_bgmSlider != null)
+        if (AudioManager.Instance.bgmSlider != null)
         {
-            _bgmSlider.onValueChanged.AddListener(delegate { OnBGMValueChanged(); });
+            AudioManager.Instance.bgmSlider.onValueChanged.AddListener(delegate { AudioManager.Instance.OnBGMValueChanged(); });
         }
     }
 
@@ -56,7 +51,7 @@ public class OptionsMenu : MonoBehaviour
     public void Apply()
     {
         PlayerPrefs.SetInt("Y-axisIsInverted", _invertYButton.isOn ? 1 : 0);
-        PlayerPrefs.SetFloat("BGMValue", _bgmSlider.value);
+        PlayerPrefs.SetFloat("BGMValue", AudioManager.Instance.bgmSlider.value);
         PlayerPrefs.Save();
         SceneManager.LoadScene(ScenesManager.PreviousSceneIndex);
     }
@@ -64,11 +59,5 @@ public class OptionsMenu : MonoBehaviour
     public void Back()
     {
         SceneManager.LoadScene(ScenesManager.PreviousSceneIndex);
-    }
-
-    private void OnBGMValueChanged()
-    {
-        _bgmAudiosource.volume = _bgmSlider.value;
-        Debug.Log($"OptionsMenu - BGM Value : {_bgmSlider.value}");
     }
 }
