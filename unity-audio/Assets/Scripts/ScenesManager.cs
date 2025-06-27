@@ -4,16 +4,18 @@ using UnityEngine.SceneManagement;
 public class ScenesManager : MonoBehaviour
 {
     public static int PreviousSceneIndex;
+    public static int CurrentSceneIndex;
 
-    private void Start()
+    public static string GetCurrentSceneName()
     {
-        Debug.Log($"ScenesManager called");
+        Debug.Log($"ScenesManager - The current scene name is {SceneManager.GetActiveScene().name}");
+        return SceneManager.GetActiveScene().name;
     }
 
-    public static string GetCurrentScene()
+    public static int GetCurrentSceneIndex()
     {
-        Debug.Log($"ScenesManager - The current scene is {SceneManager.GetActiveScene().name}");
-        return SceneManager.GetActiveScene().name;
+        Debug.Log($"ScenesManager - The current scene index is {SceneManager.GetActiveScene().buildIndex}");
+        return SceneManager.GetActiveScene().buildIndex;
     }
 
     public static void SaveCurrentScene()

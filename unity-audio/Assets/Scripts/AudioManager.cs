@@ -18,7 +18,6 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private string _pausedSnapshotName = "Paused";
 
     private bool _musicStarted = false;
-    private string _currentScene;
 
     private void Awake()
     {
@@ -34,34 +33,29 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
-        InitializeLevelBackgroundMusic();
+        if (ScenesManager.GetCurrentSceneName() == "Level01")
+        {
+            PlayLevelBackgroundMusic();
+        }
     }
 
-    public void InitializeLevelBackgroundMusic()
+    public void PlayLevelBackgroundMusic()
     {
         if (_musicStarted) return;
+ 
+        string sceneName = ScenesManager.GetCurrentSceneName();
 
-
-        if (_currentScene == "Level01")
+        if (sceneName == "Level01" || sceneName == "Level02" || sceneName == "Level03")
         {
             _bgmAudioSource.clip = _cheerryMondayClip;
-            _bgmAudioSource.Play();
-            _musicStarted = true;
+        }
+        else if (sceneName == "Options" || sceneName == "MainMenu")
+        {
+            _bgmAudioSource.clip = _cheerryMondayClip;
         }
 
-        if (_currentScene == "Options")
-        {
-            _bgmAudioSource.clip = _wallPaperClip;
-            _bgmAudioSource.Play();
-            _musicStarted = true;
-        }
-
-        if (_currentScene == "MainMenu")
-        {
-            _bgmAudioSource.clip = _wallPaperClip;
-            _bgmAudioSource.Play();
-            _musicStarted = true;
-        }
+        _bgmAudioSource.Play();
+        _musicStarted = true;
     }
 
     public void StopLevelBackgroundMusic()

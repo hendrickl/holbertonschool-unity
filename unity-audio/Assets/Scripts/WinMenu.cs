@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 // This script manages win menu navigation
 public class WinMenu : MonoBehaviour
@@ -39,20 +38,20 @@ public class WinMenu : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
+        ScenesManager.LoadScene(0);
     }
 
     public void Next()
     {
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int currentSceneIndex = ScenesManager.GetCurrentSceneIndex();
 
         if (currentSceneIndex >= LAST_LEVEL_INDEX)
         {
-            SceneManager.LoadScene(MAIN_MENU_INDEX);
+            ScenesManager.LoadScene(MAIN_MENU_INDEX);
         }
         else
         {
-            SceneManager.LoadScene(currentSceneIndex + 1);
+            ScenesManager.LoadScene(currentSceneIndex + 1);
         }
     }
 }

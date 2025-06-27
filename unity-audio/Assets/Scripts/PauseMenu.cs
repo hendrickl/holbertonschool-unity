@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 // This script manages the functionality of the pause panel
 public class PauseMenu : MonoBehaviour
@@ -123,7 +122,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        ScenesManager.LoadScene(ScenesManager.GetCurrentSceneIndex());
     }
 
     public void MainMenu()
@@ -134,7 +133,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Options()
     {
-        PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
-        SceneManager.LoadScene(1);
+        ScenesManager.LevelSelect(1);
+        // PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
+        // SceneManager.LoadScene(1);
     }
 }
