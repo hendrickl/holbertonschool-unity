@@ -134,7 +134,5 @@ public class PauseMenu : MonoBehaviour
     public void Options()
     {
         ScenesManager.LevelSelect(1);
-        // PlayerPrefs.SetInt("PreviousScene", SceneManager.GetActiveScene().buildIndex);
-        // SceneManager.LoadScene(1);
     }
 }
