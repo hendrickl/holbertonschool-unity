@@ -54,6 +54,8 @@ MonoBehaviour:
   _wallPaperClip: {fileID: 8300000, guid: 9023b8fb92e2e664bace94ef3ca04520, type: 3}
   _defaultSnapshotName: Default
   _pausedSnapshotName: Paused
+  bgmSlider: {fileID: 0}
+  bgmValue: 0
 --- !u!82 &3718953945110126431
 AudioSource:
   m_ObjectHideFlags: 0
@@ -64,8 +66,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7343332111442956952, guid: da278d145dc6e734c895721f34d537ae, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 8300000, guid: 9023b8fb92e2e664bace94ef3ca04520, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

@@ -8,11 +8,13 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private Button _backButton;
     [SerializeField] private Toggle _invertYButton;
 
+    private float _bgmValue;
+
     private void Start()
     {
         bool isYaxisInverted = PlayerPrefs.GetInt("Y-axisIsInverted", 0) == 1;
         ScenesManager.PreviousSceneIndex = PlayerPrefs.GetInt("PreviousScene");
-        PlayerPrefs.GetFloat("BGMValue", AudioManager.Instance.bgmSlider.value);
+        _bgmValue = PlayerPrefs.GetFloat("BGMValue", AudioManager.Instance.bgmSlider.value);
 
         if (_invertYButton != null)
         {
