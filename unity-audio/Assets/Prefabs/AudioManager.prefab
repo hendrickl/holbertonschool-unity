@@ -54,7 +54,7 @@ MonoBehaviour:
   _wallPaperClip: {fileID: 8300000, guid: 9023b8fb92e2e664bace94ef3ca04520, type: 3}
   _defaultSnapshotName: Default
   _pausedSnapshotName: Paused
-  bgmSlider: {fileID: 5234241057602307887, guid: 588ff00ed748e2f4a91e46bb4d80a1aa, type: 3}
+  bgmSlider: {fileID: 0}
   bgmValue: 0
 --- !u!82 &3718953945110126431
 AudioSource:
