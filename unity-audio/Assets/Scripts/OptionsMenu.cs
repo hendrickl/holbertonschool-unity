@@ -14,7 +14,15 @@ public class OptionsMenu : MonoBehaviour
     {
         bool isYaxisInverted = PlayerPrefs.GetInt("Y-axisIsInverted", 0) == 1;
         ScenesManager.PreviousSceneIndex = PlayerPrefs.GetInt("PreviousScene");
-        _bgmValue = PlayerPrefs.GetFloat("BGMValue", AudioManager.Instance.bgmSlider.value);
+
+        if (AudioManager.Instance != null && AudioManager.Instance.bgmSlider != null)
+        {
+            _bgmValue = PlayerPrefs.GetFloat("BGMValue", AudioManager.Instance.bgmSlider.value);
+        }
+        else
+        {
+            _bgmValue = PlayerPrefs.GetFloat("BGMValue", 0.5f); 
+        }
 
         if (_invertYButton != null)
         {
@@ -31,7 +39,7 @@ public class OptionsMenu : MonoBehaviour
             _backButton.onClick.AddListener(Back);
         }
 
-        if (AudioManager.Instance.bgmSlider != null)
+        if (AudioManager.Instance != null && AudioManager.Instance.bgmSlider != null)
         {
             AudioManager.Instance.bgmSlider.onValueChanged.AddListener(delegate { AudioManager.Instance.OnBGMValueChanged(); });
         }
@@ -53,7 +61,13 @@ public class OptionsMenu : MonoBehaviour
     public void Apply()
     {
         PlayerPrefs.SetInt("Y-axisIsInverted", _invertYButton.isOn ? 1 : 0);
-        PlayerPrefs.SetFloat("BGMValue", AudioManager.Instance.bgmSlider.value);
+
+        if (AudioManager.Instance != null && AudioManager.Instance.bgmSlider != null)
+        {
+            PlayerPrefs.SetFloat("BGMValue", AudioManager.Instance.bgmSlider.value);
+            AudioManager.Instance.OnBGMValueChanged();
+        }
+
         PlayerPrefs.Save();
         SceneManager.LoadScene(ScenesManager.PreviousSceneIndex);
     }
