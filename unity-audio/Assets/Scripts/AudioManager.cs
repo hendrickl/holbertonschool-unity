@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -14,12 +15,13 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip _cheerryMondayClip;
     [SerializeField] private AudioClip _victoryClip;
     [SerializeField] private AudioClip _wallPaperClip;
+    [SerializeField] private AudioClip _porchSwingDaysClip;
+    [SerializeField] private AudioClip _brittleRilleClip;
 
     [SerializeField] private string _defaultSnapshotName = "Default";
     [SerializeField] private string _pausedSnapshotName = "Paused";
 
     public Slider bgmSlider;
-    public float bgmValue;
     private bool _musicStarted = false;
 
     private void Awake()
@@ -34,36 +36,53 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
-        if (ScenesManager.GetCurrentSceneName() == "Level01")
-        {
-            PlayLevelBackgroundMusic();
-        }
+        PlayLevelBackgroundMusic();
     }
+
+    // start - Code snippet to handle BGM resolution
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        _musicStarted = false;
+        PlayLevelBackgroundMusic();
+    }
+    // end
 
     public void PlayLevelBackgroundMusic()
     {
         if (_musicStarted) return;
 
-        string sceneName = ScenesManager.GetCurrentSceneName();
-
-        if (sceneName == "Level01" || sceneName == "Level02" || sceneName == "Level03")
+        if (ScenesManager.GetCurrentSceneName() == "Level01")
         {
             _bgmAudioSource.clip = _cheerryMondayClip;
         }
-        else if (sceneName == "Options" || sceneName == "MainMenu")
+        else if (ScenesManager.GetCurrentSceneName() == "Level02")
+        {
+            _bgmAudioSource.clip = _porchSwingDaysClip;
+        }
+        else if (ScenesManager.GetCurrentSceneName() == "Level03")
+        {
+            _bgmAudioSource.clip = _brittleRilleClip;
+        }
+        else
         {
             _bgmAudioSource.clip = _wallPaperClip;
         }
 
         _bgmAudioSource.Play();
         _musicStarted = true;
+        Debug.Log($"AudioManager - For scene: {ScenesManager.GetCurrentSceneName()}, Current BGM is: {_bgmAudioSource.clip}");
     }
 
     public void StopLevelBackgroundMusic()
@@ -72,6 +91,7 @@ public class AudioManager : MonoBehaviour
         {
             _bgmAudioSource.Stop();
             _musicStarted = false;
+            Debug.Log($"AudioManager - Stopped BGM & Reset _musicStarted flag to {_musicStarted}");
         }
     }
 
