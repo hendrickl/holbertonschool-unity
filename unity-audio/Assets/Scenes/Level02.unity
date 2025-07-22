@@ -3932,7 +3932,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1842016731}
   m_Layer: 0
-  m_Name: ========== LOGIC GO ================================
+  m_Name: ========== LOGIC EMPTY  GO ================================
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
